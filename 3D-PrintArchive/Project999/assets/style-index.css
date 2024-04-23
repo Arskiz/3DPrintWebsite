@@ -1,0 +1,80 @@
+#SignUpDropDownButton2 {
+    margin-right: 30px;
+    transition: all 1s;
+}
+#SignUpDropDownButton2:hover{
+    transform: translateY(-3px);
+}
+
+#SignUpDropDownButton, #SignUpDropDownButton2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#SignUpDropDownButton{
+    margin-right: 10px;
+    transition: all 1s;
+}
+
+#SignUpDropDownButton:hover{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#Arrow_SignUp{
+    transition: all 0.3s;
+}
+
+:root{
+    --rightAmount: 67px;
+    --blurBG:rgba(255, 255, 255, 0.15);
+}
+
+#signUpDropDown{
+    padding: 7px;
+    position: fixed;
+    right: var(--rightAmount);
+    top: 65px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0.15);
+    transition: all 0.3s;
+    display: none;
+}
+
+.nonSelectable{
+    user-select: none;
+}
+
+body{
+    transition: all 0.3s;
+    justify-content: center;
+}
+
+#HomeText{
+    margin-top: 50px;
+}
+
+.infoBoxWindow{
+    transition: all 0.2s;
+    margin-left: 250px;
+    margin-right: 250px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+    background-color: rgba(199, 199, 199, 0.1);
+    border: 2px solid black;
+}
+
+@media (max-width: 500px){
+    #signUpDropDown{
+        padding: 7px;
+        position: fixed;
+        right: 5px;
+        top: 65px;
+        border-radius: 10px;
+        transition: opacity 0.3s ease;
+    }
+
+}

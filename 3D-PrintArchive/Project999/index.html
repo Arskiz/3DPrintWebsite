@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html id="html" lang="en">
+
+<head>
+    <link rel="stylesheet" href="assets/style-shared.css">
+    <link rel="stylesheet" href="assets/style-index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>About - Archive of 3D-Prints</title>
+</head>
+
+<body id="body">
+
+    <header id="header">
+        <!-- Left side of the header -->
+        <div id="HeaderLeft">
+            <div style="margin-left: 15px" class="Hoverable" onclick="redirect(0)"><img
+                    src="assets/icons/mercantec-logo-white.png" alt="Mercantec Logo" width="170px"></div>
+
+            <!--<p class="Titles">3D-Print archive</p>-->
+        </div>
+
+        <!-- Right side of the header -->
+        <div id="HeaderRight">
+            <div id="HeaderRightNonHamburger">
+                <div id="SignUpDropDownButton2" class="nonSelectable Hoverable" onclick="redirect(2)">
+                    <p class="HeaderElementText">To Archive</p>
+                    <img src="assets/icons/arrow-right.png" height="20px" alt="arrow_right" style="filter:invert(100%); transform: rotate(270deg);">
+                </div>
+    
+                <div id="SignUpDropDownButton" class="nonSelectable Hoverable" >
+                    <p class="HeaderElementText">Log In</p>
+                    <img src="assets/icons/collapse_arrow.png" class="start" height="20px" id="Arrow_SignUp"
+                        alt="arrow_collapse">
+                </div>
+            </div>
+
+            <div id="HeaderRightHamburger" class="Hoverable">
+                <img id="HamburgerBTNImg" src="../Project999/assets/icons/hamburger.svg" alt="hamburger-icon" style="filter:invert(100%)" width="50px">
+            </div>
+        </div>
+    </header>
+
+    <div id="signUpDropDown">
+        <div id="signUpDropDownInner" class="">
+            <p class="twentypx automargin marginleft text">Have an account?</p>
+            <div class="Hoverable buttonBNR text" onclick="redirect(1)">
+                Log In
+            </div>
+        </div>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="HamburgerContent">
+        <div style="margin-top: 5px;">
+            <p class="white pText textAlignCenter" style="font-size: 50px;">
+                Menu
+            </p>
+            
+            <div class="lineLonger" style="margin-bottom: 10px;"></div>
+        </div>
+
+        <button class="Hoverable buttonBNR nonSelectable" style="margin-bottom: 5px;" onclick="redirect(2)">
+            <p class="pText white" style="font-size: 30px;">
+                To Archive
+            </p>
+        </button>
+
+        <button class="Hoverable buttonBNR nonSelectable" onclick="redirect(1)">
+            <p class="pText white" style="font-size: 30px;">
+                Log In
+            </p>
+        </button>
+    </div>
+    <!-- Home text etc... -->
+    <div id="HomeText">
+        <p class="white pText textAlignCenter" >
+            Welcome to Mercantec's 3D Archive! This is your go-to spot on the school network for storing personal and work-related 3D files safely and easily.
+        </p>    
+        <br>
+        <br>
+        <p class="white pText textAlignCenter">
+            Whether you’re working on class projects or safeguarding your own creative works, our platform is designed specifically for you.
+        </p>
+        <div style="margin-top: 20px;" class="lineLonger"></div>
+        <br>
+        <br>
+        <h1 class="pText AboutUsSubTitle">
+            What We Offer:
+        </h1>
+        <div class="AboutUsDiv">
+            <p class="white pText textAlignCenter">
+                Our archive provides a secure and user-friendly environment to store all your 3D files.
+            </p>
+            <br>
+            <br>
+            <p class="white pText textAlignCenter">
+                You can access your files from anywhere on the school network, making it convenient to retrieve your work whenever you need it.
+            </p>
+        </div>
+        <br>
+        <br>
+        <h1 class="pText AboutUsSubTitle">
+            Our Founders:
+        </h1>
+        <div class="AboutUsDiv">
+            <p class="white pText textAlignCenter">
+                Developed by two exchange students from Finland right here at our school, Mercantec's 3D Archive was created to fill a need for reliable 3D file storage within our own community.
+            </p>
+            <br>
+            <br>
+            <p class="white pText textAlignCenter">
+                Seeing the challenge of managing numerous 3D projects, they built a solution that helps all students and staff manage their digital files with ease.
+            </p>
+        </div>
+        <br>
+        <br>
+        <h1 class="pText AboutUsSubTitle">
+            Local Community Focus:
+        </h1>
+        <div class="AboutUsDiv">
+            <p class="white pText textAlignCenter">
+                As a service available exclusively on the school network, we’re focused on creating a supportive environment for our students and faculty. 
+            </p>
+            <br>
+            <br>
+            <p class="white pText textAlignCenter">
+                We’re committed to maintaining a high standard of security and functionality, ensuring that your projects are safe and always accessible within our community.
+            </p>
+        </div>
+        
+    </div>
+
+    <footer id="footer">
+        <div id="innerFooter">
+            <p id="footerText" class="white pText textAlignCenter">
+                Copyright © Mercantec, Inc. 2024. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</body>
+
+<script src="assets/scripts/js.js"></script>
+<script src="assets/scripts/canvas.js"></script>
+
+
+</html>
