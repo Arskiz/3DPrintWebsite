@@ -125,9 +125,14 @@ html {
 }
 
 #itemPreviewInner {
+    position: absolute;
+    right: 10px;
+    left: 10px;
+    bottom: 10px;
+    top: 80px;
     transition: all 0.2s;
     margin-top: 10px;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -160,6 +165,7 @@ html {
     top: 20px;
     left: 20%;
     right: 20%;
+    bottom: 20px;
     background-color: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
     border-radius: 20px;
@@ -192,6 +198,7 @@ html {
     backdrop-filter: blur(6px);
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0px 0px 10px black;
+    margin-bottom: 30px;
 }
 #loadMoreBTN:hover{
     border: 1px solid white;
@@ -276,12 +283,6 @@ html {
     }
 
     .fixedOnTop {}
-}
-
-@media (max-width: 1700px) {
-    #fR1 {
-        flex-direction: column;
-    }
 }
 
 @media (max-width: 1100px) {

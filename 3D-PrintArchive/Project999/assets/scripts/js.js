@@ -136,7 +136,7 @@ function AC(elementID, classToAdd) {
 function redirect(rID) {
     const urls = {
         0: "https://mercantec.dk",
-        1: "logIn.html",
+        1: "logIn.php",
         2: "main.html",
         999: "index.html"
     };

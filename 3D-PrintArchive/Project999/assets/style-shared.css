@@ -442,17 +442,7 @@ canvas {
 
 
 ::-webkit-scrollbar{
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #707070;
-    border-radius: 20px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #424242;
-    border-radius: 20px;
+    display: none;
 }
 
 

@@ -35,18 +35,28 @@ function checkStorage() {
 function loadItems(isMob) {
     const k = document.getElementById("body");
     k.style.overflow = "auto";
-    let atl = 100;
-
+    let atl = 13;
+    let cR = 1;
     if (!isMob) {
         for (let i = 0; i < atl; i++) {
-            const columnId = "fC" + (i + 1);
-            const itemName = `TEST`;
+            const columnId = "fC" + cR;
+            const itemName = `TEST ${cards.length + 1}`;
             const itemCategory = "ItemTesting";
-            const itemArtist = "Arskiz";
-            const itemDescription = "Lorem Ipsum...";
+            const itemAuthor = "Arskiz";
+            const date = new Date();
             const itemImage = "3dArt-index-649821.jpg";
+            const itemDescription = `-----------------[DEBUG]-----------------<br>Item ID: ${cards.length + 1}<br>Item Name: ${itemName}<br>Category: ${itemCategory}<br>Author: ${itemAuthor}<br>Date Created: ${date.getDate() + "." + date.getMonth() + "." + date.getFullYear() + " at " + date.getHours() + "." + date.getMinutes() + "." + date.getSeconds()}<br>-----------------[DEBUG]-----------------`;
+            
 
-            cards.push(generateCard(columnId, itemName, itemCategory, itemArtist, itemDescription, itemImage));
+            cards.push(generateCard(columnId, itemName, itemCategory, itemAuthor, itemDescription, itemImage, true));
+
+            if(cR < 5){
+                cR += 1;
+            }
+            else
+            {
+                cR = 1;
+            }
         }
 
     }
@@ -89,7 +99,13 @@ l.addEventListener("click", () => {
 });
 
 function url(a) {
-    return a + fT;
+    if(a == "logIn"){
+        return a + ".php";
+    }
+    else
+    {
+        return a + fT;
+    }
 }
 
 function flush() {
@@ -116,7 +132,7 @@ function generateCard(id, itemName, itemID, author, description, imgName, return
     const innerDiv = document.createElement('div');
     innerDiv.className = 'printItemInner';
     innerDiv.innerHTML = `
-        <p title="${itemName}" class="white pText cardTxt itemInnerTitle Titles" onclick="previewItem('${itemName}', '${imgName}', '${description}')">${name}</p>
+        <p title="${itemName}" class="white pText cardTxt itemInnerTitle Titles" style="margin-top: 15px;" onclick="previewItem('${itemName}', '${imgName}', '${description}')">${name}</p>
     `;
     card.appendChild(innerDiv);
     container.appendChild(card);
@@ -182,12 +198,12 @@ function previewItem(name, imgName, desc) {
                 X
             </p>
         </button>
-        <div class="lineLonger"></div>
-        <div id="itemPreviewInner" style="overflow-y: scroll; height: 500px;">
-            <img id="itemPreviewImage" src="../Project999/assets/images/items/${imgName}" width="700px" alt="Image of Item" style="border-radius: 20px;">
-            <p id="itemPreviewDescText" class="white pText">
+        
+        <div id="itemPreviewInner" style="overflow-y: scroll;">
+            <img id="itemPreviewImage" src="../Project999/assets/images/items/${imgName}" width="500px"" alt="Image of Item" style="border-radius: 10px;">   
+            <div id="itemPreviewDescText" class="white pText">
                 ${desc}
-            </p>
+            </div>
         </div>
     </div>
         `
@@ -201,7 +217,8 @@ function clearPreviewItem() {
 
 
 $(window).on("load", function () {
-    
+    // Set responsive stuff at window load
+    resizeHandler()
     
     const loadMoreBTN = $("#loadMoreBTN");
     const accountInformationButton = $("#logInBtnAccountInformation");
@@ -219,3 +236,42 @@ $(window).on("load", function () {
         
     })
 })
+
+$(window).on("resize", function(){
+    resizeHandler()
+})
+
+function resizeHandler(){
+    const fr1 = $("#fR1");
+    const fr2 = $("#fR2");
+    const fr3 = $("#fR3")
+    let width = window.innerWidth;
+
+    if(width < 1700 >){
+        fr2.css("display", "none");
+        fr1.css("display", "flex");
+    }
+
+    else if(width > 1700){
+        fr1.css("display", "none");
+        fr2.css("display", "flex");
+
+        // For every card do:
+        cR2 = 3;
+        for(let i = 0; i < cards.length; i++{
+
+            // TODO: LATER!!!!!!
+
+
+            if(cR2 < 3){
+                cR2 += 1;
+            }
+            else
+            {
+                cR2 = 1;
+            }
+        })
+
+        
+    }
+}
