@@ -81,10 +81,10 @@ function getToken($type)
 
 function getData($method)
 {
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "three_d";
+    $server = "192.168.116.229";
+    $username = "visitor";
+    $password = "userVisitor+";
+    $database = "Three_D";
 
     $conn = mysqli_connect($server, $username, $password, $database);
     if ($conn->connect_error) {

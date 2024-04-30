@@ -1,9 +1,8 @@
 <?php
 session_start();
 
-
 // Connection
-$conn = new mysqli("localhost", "root", "", "three_d");
+$conn = new mysqli("192.168.116.229", "visitor", "userVisitor+", "Three_D");
 
 if ($conn->connect_error) {
     die();

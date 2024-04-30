@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost"; // To be changed to 3dprintarchive.socdata.dk.... etc in the future!!!
-$serverUsername = "root"; // To be changed to a different user with restricted permissions.
-$serverPassword = "";
-$dbname = "three_d";
+    $servername = "192.168.116.229";
+    $serverUsername = "visitor";
+    $serverPassword = "userVisitor+";
+    $dbname = "Three_D";
 
 if (isset($_POST['Send'])) {
     $over = 0;
