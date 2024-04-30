@@ -215,7 +215,7 @@ html {
     border-radius: 10px;
     padding: 10px;
     position: fixed;
-    right: 180px;
+    right: 210px;
     top: 75px;
     z-index: 2;
     flex-direction: column;
@@ -224,14 +224,6 @@ html {
 .windowAccountInfo {
     text-wrap: nowrap;
     font-size: 20px;
-}
-
-.red{
-    color: rgba(255,100,100,0.9);
-}
-
-.white {
-    color: rgba(255, 255, 255, 0.707);
 }
 
 .iPT {
@@ -282,7 +274,9 @@ html {
         width: 500px;
     }
 
-    .fixedOnTop {}
+    .fixedOnTop {
+
+    }
 }
 
 @media (max-width: 1100px) {
@@ -293,6 +287,7 @@ html {
 
 @media (max-width: 650px){
     #accountWindow{
-        right: 100px;
+        right: 170px;
     }
 }
+/* Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved. */

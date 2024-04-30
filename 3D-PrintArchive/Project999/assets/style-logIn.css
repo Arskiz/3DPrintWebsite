@@ -14,6 +14,39 @@ body, html{
     align-items: center;
 }
 
+#errorHandler{
+    text-align: center;
+    font-weight: 800;
+    font-size: 25px;
+    font-family: 'Nunito';
+    margin-left: 20px;
+    margin-right: 20px;
+    color: rgba(255, 47, 47,0.8);
+}
+
+.submitButton{
+    margin-top: 5px;
+    transition: all 0.3s;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 20px;
+}
+
+.submitButton:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+}
+
+#errorHandlerReason{
+    font-family: 'Nunito';
+    color: rgba(255, 129, 129,0.7);
+    margin-right: 40px;
+    margin-left: 40px;
+}
 
 #infoHolder{
     display: flex;
@@ -87,22 +120,4 @@ body, html{
     cursor: pointer;
 }
 
-
-
-
-@media (max-width: 1050px){
-
-    #infoHolderChild1{
-        width: 60%;
-    }
-
-}
-
-@media (max-width: 850px){
-
-    #infoHolderChild1{
-        width: 80%;
-
-    }
-
-}
+/* Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved. */

@@ -1,202 +1,201 @@
-let signUpOpened = false;
-var bodyTextArea = null;
+// Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved.
+// State tracking for the signup dropdown visibility
+let isSignUpDropdownOpened = false;
 
+// Reference to a dynamically updated text area in the body
+var activeBodyTextArea = null;
+
+// Toggles the visibility of the signup dropdown
 function toggleSignUpDropdown() {
-    const signUpDropDown = $("#signUpDropDown");
-    const signUpDropDownInner = $("#signUpDropDownInner");
+    const signUpDropdown = $("#signUpDropDown");
+    const signUpDropdownContent = $("#signUpDropDownInner");
 
-    // Function to manage opening the dropdown
+    // Opens the dropdown, setting necessary UI changes
     function openDropdown() {
-        arrowHandler(1);
-        signUpDropDown.removeClass("hidden2");
-        signUpDropDownInner.removeClass("hidden2");
+        updateArrowDirection(1);
+        signUpDropdown.removeClass("hidden2");
+        signUpDropdownContent.removeClass("hidden2");
     }
 
-    // Function to manage closing the dropdown
+    // Closes the dropdown, resetting UI elements
     function closeDropdown() {
-        arrowHandler(0);
-        signUpDropDownInner.addClass("hidden2");
-        signUpDropDown.addClass("hidden2");
+        updateArrowDirection(0);
+        signUpDropdownContent.addClass("hidden2");
+        signUpDropdown.addClass("hidden2");
     }
 
-    // Toggle the state with a slight delay to manage transitions
+    // Manages dropdown state with a minimal delay for smooth transitions
     setTimeout(() => {
-        if (signUpOpened) {
+        if (isSignUpDropdownOpened) {
             closeDropdown();
         } else {
             openDropdown();
         }
-        signUpOpened = !signUpOpened;
+        isSignUpDropdownOpened = !isSignUpDropdownOpened;
     }, 50);
 }
 
-let dropDownOpened = false;
-let dropDownClickable = true;
-const dropDownElement = $("#signUpDropDown");
-const hamburgerMenuElementButton = $("#HeaderRightHamburger");
-const hamburgerMenu = $("#HamburgerContent");
-const hamburgerBTNImg = $("#HamburgerBTNImg");
+// State tracking for the main dropdown menu
+let isMainDropdownOpened = false;
+let isMainDropdownClickable = true;
+const mainDropdownElement = $("#signUpDropDown");
+const hamburgerMenuButton = $("#HeaderRightHamburger");
+const hamburgerMenuContent = $("#HamburgerContent");
+const hamburgerButtonImage = $("#HamburgerBTNImg");
 
-let hamburgerOpened = null;
+let isHamburgerMenuOpened = false;
 
+// Initializes dropdown handlers on window load
 $(window).on("load", function () {
-    hamburgerOpened = false;
-    hamburgerMenu.css("display", "none");
+    hamburgerMenuContent.css("display", "none");
     $("#SignUpDropDownButton").on("click", function () {
-        if (!dropDownOpened) {
-            if (dropDownClickable) {
-                arrowHandler(1);
-                dropDownElement.css("animation", "smoothOpacityIn 0.7s ease-in-out, smoothFromRight 0.7s ease-in-out")
-                dropDownElement.css("display", "flex");
-                dropDownClickable = false;
+        if (!isMainDropdownOpened) {
+            if (isMainDropdownClickable) {
+                updateArrowDirection(1);
+                mainDropdownElement.css("animation", "smoothOpacityIn 0.7s ease-in-out, smoothFromRight 0.7s ease-in-out")
+                mainDropdownElement.css("display", "flex");
+                isMainDropdownClickable = false;
                 setTimeout(() => {
-                    dropDownClickable = true;
+                    isMainDropdownClickable = true;
                 }, 500);
             }
-        }
-        else {
-            if (dropDownClickable) {
-                dropDownElement.css("animation", "smoothOpacityOut 0.7s ease-in-out, smoothToRight 0.7s ease-in-out")
-                dropDownClickable = false;
+        } else {
+            if (isMainDropdownClickable) {
+                mainDropdownElement.css("animation", "smoothOpacityOut 0.7s ease-in-out, smoothToRight 0.7s ease-in-out")
+                isMainDropdownClickable = false;
                 setTimeout(() => {
-                    dropDownElement.css("display", "none");
-                    dropDownElement.css("animation", "smoothOpacityIn 0.7s ease-in-out, smoothFromRight 0.7s ease-in-out")
-                    arrowHandler(0);
-                    dropDownClickable = true;
+                    mainDropdownElement.css("display", "none");
+                    mainDropdownElement.css("animation", "smoothOpacityIn 0.7s ease-in-out, smoothFromRight 0.7s ease-in-out")
+                    updateArrowDirection(0);
+                    isMainDropdownClickable = true;
                 }, 500);
             }
 
         }
 
-        dropDownOpened = !dropDownOpened;
+        isMainDropdownOpened = !isMainDropdownOpened;
     });
 
-    hamburgerMenuElementButton.on("click", function () {
-        if (hamburgerOpened) {
-            hamburgerMenu.css("animation", "smoothOpacityIn 1s ease-in-out, growInFromVoid 1s ease-in-out");
-            hamburgerBTNImg.css("transform", "RotateZ(90deg)")
+    hamburgerMenuButton.on("click", function () {
+        if (isHamburgerMenuOpened) {
+            hamburgerMenuContent.css("animation", "smoothOpacityIn 1s ease-in-out, growInFromVoid 1s ease-in-out");
+            hamburgerButtonImage.css("transform", "RotateZ(90deg)")
 
-            hamburgerMenu.css("display", "flex");
-        }
-        else {
-            hamburgerBTNImg.css("transform", "RotateZ(0deg)")
-            hamburgerMenu.css("animation", "growOut 0.5s ease-in-out");
+            hamburgerMenuContent.css("display", "flex");
+        } else {
+            hamburgerButtonImage.css("transform", "RotateZ(0deg)")
+            hamburgerMenuContent.css("animation", "growOut 0.5s ease-in-out");
             setTimeout(() => {
-                hamburgerMenu.css("display", "none");
+                hamburgerMenuContent.css("display", "none");
             }, 500);
 
         }
 
-        hamburgerOpened = !hamburgerOpened;
+        isHamburgerMenuOpened = !isHamburgerMenuOpened;
     })
-
-
 });
 
-
-function arrowHandler(ID) {
-    const arrowSignUp = document.getElementById("Arrow_SignUp");
-    arrowSignUp.classList.toggle("start", ID === 0);
-    arrowSignUp.classList.toggle("finish", ID === 1);
+// Updates the arrow icon direction in the UI
+function updateArrowDirection(stateId) {
+    const arrowIcon = document.getElementById("Arrow_SignUp");
+    arrowIcon.classList.toggle("start", stateId === 0);
+    arrowIcon.classList.toggle("finish", stateId === 1);
 }
 
-function animateElement(element, animation, duration, callback) {
+// Animates a specified element with custom callbacks
+function animateElement(element, animationName, durationInSeconds, callback) {
     if (element != null) {
-        element.style.animation = animation;
-        element.style.animationDuration = `${duration + duration * 0.5}s`;
-        setTimeout(callback, duration * 1000);
+        element.style.animation = `${animationName} ${durationInSeconds + durationInSeconds * 0.5}s`;
+        setTimeout(callback, durationInSeconds * 1000);
     }
-
 }
 
-function ACARC(elementID, classToAdd, classToRemove) {
-    const element = document.getElementById(elementID);
-    if(element != null){
-        element.classList.remove(classToRemove)
+// Adds and removes CSS classes dynamically
+function addAndRemoveClass(elementId, classToAdd, classToRemove) {
+    const element = document.getElementById(elementId);
+    if (element != null) {
+        element.classList.remove(classToRemove);
         element.classList.add(classToAdd);
     }
-
 }
 
-function RC(elementID, classToRemove) {
-    if(element != null){
-    const element = document.getElementById(elementID);
-    element.classList.remove(classToRemove);
-}
-}
-
-function AC(elementID, classToAdd) {
-    if(element != null){
-    const element = document.getElementById(elementID);
-    element.classList.add(classToAdd);
-}
+// Removes a CSS class from an element
+function removeClass(elementId, classToRemove) {
+    const element = document.getElementById(elementId);
+    if (element != null) {
+        element.classList.remove(classToRemove);
+    }
 }
 
-// Redirect function simplified for clarity
-function redirect(rID) {
+// Adds a CSS class to an element
+function addClass(elementId, classToAdd) {
+    const element = document.getElementById(elementId);
+    if (element != null) {
+        element.classList.add(classToAdd);
+    }
+}
+
+// Redirects to a specified URL based on an ID
+function redirect(redirectId) {
     const urls = {
         0: "https://mercantec.dk",
         1: "logIn.php",
-        2: "main.html",
+        2: "main.php",
+        3: "register.php",
         999: "index.html"
     };
 
-    const header = document.getElementById("header");
-    const footer = document.getElementById("footer");
-    const headerLeft = document.getElementById("HeaderLeft");
-    const headerRight = document.getElementById("HeaderRight");
-    const body = document.getElementById("body");
+    const headerElements = {
+        header: document.getElementById("header"),
+        footer: document.getElementById("footer"),
+        headerLeft: document.getElementById("HeaderLeft"),
+        headerRight: document.getElementById("HeaderRight"),
+        body: document.getElementById("body")
+    };
 
-
-
-    animateElement(headerLeft, "smoothToLeft", 0.5);
-    animateElement(headerRight, "smoothToRight", 0.5);
-    animateElement(header, "headerAnim2", 1);
-    animateElement(footer, "smoothToBottom", 1);
-    let t = "";
-    switch (bodyTextArea) {
+    Object.values(headerElements).forEach(el => animateElement(el, "smoothToTop", 0.5));
+    
+    let animationType = "";
+    switch (activeBodyTextArea) {
         case "infoHolderChild1" || "archDiv":
-            t = "growOut";
+            animationType = "growOut";
             break;
         case "HomeText":
-            t = "smoothToBottom";
+            animationType = "smoothToBottom";
             break;
     }
 
-    animateElement(document.getElementById(bodyTextArea), t, 1);
-    animateElement(body, "smoothOpacityOut", 0.9, () => {
-        window.location.href = urls[rID] || "/";
+    animateElement(document.getElementById(activeBodyTextArea), animationType, 1);
+    animateElement(headerElements.body, "smoothOpacityOut", 0.9, () => {
+        window.location.href = urls[redirectId] || "/";
     });
 
 }
 
+// Document ready actions
 document.addEventListener("DOMContentLoaded", () => {
-    const a = " - Archive of 3D-Prints";
+    const archiveSuffix = " - Archive of 3D-Prints";
     const titles = {
         0: "Log In",
         1: "About",
         2: "Archive"
     };
-    var b = null
+    var activeSection = null;
 
     switch (document.title) {
-        case (titles[0] + a):
-            b = "infoHolderChild1";
+        case (titles[0] + archiveSuffix):
+            activeSection = "infoHolderChild1";
             break;
 
-        case (titles[1] + a):
-            b = "HomeText";
+        case (titles[1] + archiveSuffix):
+            activeSection = "HomeText";
             break;
 
-        case (titles[2] + a):
-            b = "archDiv";
+        case (titles[2] + archiveSuffix):
+            activeSection = "archDiv";
             break;
     }
 
-    bodyTextArea = b;
-    console.log(bodyTextArea)
+    activeBodyTextArea = activeSection;
+    console.log(activeBodyTextArea)
 })
-
-
-
-

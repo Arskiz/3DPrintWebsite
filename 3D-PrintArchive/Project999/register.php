@@ -10,8 +10,6 @@ else
     $_REASON = "";
 }
 
-
-
 // Already Logged in? -> redirect
 if(isset($_SESSION['Token']) && $_SESSION['Token'] != null)
 {
@@ -20,22 +18,12 @@ if(isset($_SESSION['Token']) && $_SESSION['Token'] != null)
 
 function HandleErrors($_REASON_H){
     switch($_REASON_H){
-        case 'fields_empty':
-            return 'At least one field is empty!';
-        case 'pass_invalid':
-            return 'Invalid password!';
-        case 'account_notfound':
-            return 'The account does not exist!';
-
-        case "zero_accounts":
-            return "There are no accounts in the database!";
-        case '':
-            return "";
-
-        case 'account_created_success':
-            return "Your account was successfully created!";
+        case 'accountname_mismatch':
+            return 'Account name is already in use!';
+        case 'field_error':
+            return "At least one of the fields is empty!";
         default:
-            return 'Unknown error detected!';
+            return '';
     }
 }
 ?>
@@ -55,7 +43,7 @@ function HandleErrors($_REASON_H){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Log In - Archive of 3D-Prints</title>
+    <title>Register - Archive of 3D-Prints</title>
 </head>
 
 <body id="body">
@@ -87,31 +75,42 @@ function HandleErrors($_REASON_H){
     </header>
 
     <div id="infoHolder" style="height:100%">
-        <form action="database_connection.php" method="post">
+        <form action="register_user.php" method="post">
             <div id="infoHolderChild1">
                 <p id="loginWindowTitle" class="pText nonSelectable"
-                    style="color: rgba(255, 255, 255, 0.707); margin-bottom: 5px;">Sign
-                    In:</p>
+                    style="color: rgba(255, 255, 255, 0.707); margin-bottom: 5px;">Register:</p>
                 <div class="line"></div>
                 <br>
 
                 <p id="userNameTitle" class="logInFormTitle  pText nonSelectable" style="margin-bottom: 5px;">Username:
                 </p>
                 <input title="Type your username here." style="margin-bottom: 5px;" id="userIn" name="userIn"
-                    class="inputBox textAlignCenter" type="text">
+                    class="inputBox textAlignCenter" type="text" placeholder="Type here...">
                 <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">Password:
                 </p>
                 <input title="Type your password here." style="margin-bottom: 5px;" id="passIn" name="passIn"
-                    class="inputBox textAlignCenter" type="password">
+                    class="inputBox textAlignCenter" type="password" placeholder="Type here...">
+                <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">Email:
+                </p>
+                <input title="Type your email here." style="margin-bottom: 5px;" id="emailIn" name="emailIn"
+                class="inputBox textAlignCenter" type="email" placeholder="Type here...">
+                <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">First and Last Name:
+                </p>
+                <input title="Type your first name here." style="margin-bottom: 5px;" id="nameIn" name="nameIn"
+                class="inputBox textAlignCenter" type="text" placeholder="Type here...">
+                <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">Phone Number:
+                </p>
+                <input title="Type your phone number here." style="margin-bottom: 5px;" id="phoneNumberIn" name="phoneNumberIn" placeholder="Type here..."
+                class="inputBox textAlignCenter" type="text">
+
+
                 <button class="pText Hoverable submitButton" type="submit" name="Send">
                     <p id="logInButtonText" style="margin: auto;" class="pText">
-                        Sign In
+                        Register
                     </p>
                 </button>
-                <p style="margin-left: 20px;margin-top: 5px; margin-right: 20px; font-size: 25px" class="pText white">No account? Register <a class="pText white" style="font-size: 25px" href="register.php">here</a>.</p>
-                
         </form>
-        <p id="errorHandler" style="<?php if($_REASON == "account_created_success"){ echo'color: rgba(100,255,100,0.9)';} else{echo 'color: rgba(255,100,100,0.9);';}?>" class="pText logInFormText"><?php echo HandleErrors($_REASON); ?></p>
+        <p id="errorHandler" class="pText logInFormText"><?php echo HandleErrors($_REASON); ?></p>
     </div>
     <div id="rc">
 

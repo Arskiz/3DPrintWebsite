@@ -1,0 +1,123 @@
+<?php
+$servername = "localhost"; // To be changed to 3dprintarchive.socdata.dk.... etc in the future!!!
+$username = "root"; // To be changed to a different user with restricted permissions.
+$password = "";
+$dbname = "three_d";
+
+if (isset($_POST['Send'])) {
+    $over = 0;
+    $targetUsername = $_POST["userIn"];
+    $targetPassword = $_POST["passIn"];
+    if (strlen($targetUsername) > 0) {
+        $over = 1;
+    }
+    if (strlen($targetPassword) > 0) {
+        $over = 2;
+    }
+
+    if ($over == 2)
+        CheckCredentials($targetUsername, $targetPassword, $servername, $username, $password, $dbname);
+    else {
+        header("Location:logIn.php?r=fields_empty");
+        die();
+    }
+}
+
+function console_log($output, $with_script_tags = true)
+{
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+        ');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
+}
+
+function random_string($length)
+{
+    $str = random_bytes($length);
+    $str = base64_encode($str);
+    $str = str_replace(["+", "/", "="], "", $str);
+    $str = substr($str, 0, $length);
+    return $str;
+}
+
+function CheckCredentials($user, $pass, $targetServer, $serverUser, $serverPass, $serverDb)
+{
+    // Make a connection
+    $connection = connect($targetServer, $serverUser, $serverPass, $serverDb);
+    $hashedPass = hash("sha256", $pass);
+    // Make a query
+
+    $sql = "SELECT id, userName, password, role, token from users";
+    $result = $connection->query($sql);
+
+
+    $accountFound = false;
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            if (strcasecmp($row["userName"], $user) == 0) {
+                // Add Token
+                if ($hashedPass == $row["password"]) {
+                    // User entered correct password :)
+                    token($row, $user, $connection);
+                    $accountFound = true;
+                    break; // Exit the loop since account is found
+                } else {
+                    header("Location:logIn.php?r=pass_invalid");
+                    die();
+                }
+            }
+        }
+
+        // Check if account was not found
+        if (!$accountFound) {
+            header("Location: logIn.php?r=account_notfound");
+            die();
+        }
+    }
+    else
+    {
+        header("Location: logIn.php?r=zero_accounts");
+        die();
+    }
+
+}
+
+function token($row, $user, $connection)
+{
+    session_start();
+    $ID = $row["id"];
+    $NAME = $row["userName"];
+    $ROLE = $row["role"];
+
+    $token_length = 50;
+    $_TOKEN = random_string($token_length);
+    $sql = "UPDATE users SET userName='$NAME', role='$ROLE', Token='$_TOKEN' WHERE ID='$ID'";
+
+    $connection->query($sql);
+    $_SESSION['Token'] = $_TOKEN;
+    $_SESSION['User'] = $NAME;
+    $_SESSION['Role'] = $ROLE;
+    header("Location:main.php");
+    $connection->close();
+    die();
+}
+
+function connect($servername, $username, $password, $dbname)
+{
+    // Connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        console_log("failed" . $conn->connect_error);
+        die();
+    }
+    console_log("connected to the server succesfully.");
+    return $conn;
+}
+
+?>
+<!-- Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved. -->

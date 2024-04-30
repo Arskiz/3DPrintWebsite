@@ -10,7 +10,7 @@
 </body>
 <script>
     addEventListener("DOMContentLoaded", (event) => {
-        window.location.href = "Project999/main.html";
+        window.location.href = "Project999/main.php";
     });
 </script>
 </html>

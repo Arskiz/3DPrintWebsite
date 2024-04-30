@@ -1,3 +1,4 @@
+// Copyright© Aron Särkioja & W3Schools.com to Mercantec, Inc. 2024. All rights reserved.
 var canvas = document.getElementById("canvas"),
   ctx = canvas.getContext('2d');
 var body = document.getElementById("body");
