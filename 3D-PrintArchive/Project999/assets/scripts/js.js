@@ -2,6 +2,8 @@
 // State tracking for the signup dropdown visibility
 let isSignUpDropdownOpened = false;
 
+// Is canvas animation checked
+let CanvasAnimation = false;
 // Reference to a dynamically updated text area in the body
 var activeBodyTextArea = null;
 
@@ -35,6 +37,12 @@ function toggleSignUpDropdown() {
     }, 50);
 }
 
+$(document).ready(function(){
+    $("#bgAnimationBtn").click(function(){
+        $("#bgAnimationOption").collapse('toggle'); // toggle collapse
+    });
+})
+
 // State tracking for the main dropdown menu
 let isMainDropdownOpened = false;
 let isMainDropdownClickable = true;
@@ -46,8 +54,18 @@ const hamburgerButtonImage = $("#HamburgerBTNImg");
 let isHamburgerMenuOpened = false;
 
 // Initializes dropdown handlers on window load
-$(window).on("load", function () {
-    hamburgerMenuContent.css("display", "none");
+$(window).on("load", function ()
+{
+    let cV = localStorage.getItem("canvasAnimation");
+    switch(cV)
+    {
+        case null:
+            localStorage.setItem("canvasAnimation", "true");
+            SetCanvas(true);
+        break;
+    }
+
+
     $("#SignUpDropDownButton").on("click", function () {
         if (!isMainDropdownOpened) {
             if (isMainDropdownClickable) {
@@ -93,6 +111,28 @@ $(window).on("load", function () {
 
         isHamburgerMenuOpened = !isHamburgerMenuOpened;
     })
+
+    $('#canvasAnimation').click(function () {
+        if (this.checked) {
+            localStorage.setItem("canvasAnimation", "true");
+            createCanvas("body");
+        }
+        else if(!this.checked) {
+            SetCanvas(false);
+            localStorage.setItem("canvasAnimation", "false");
+        }
+    })
+
+    $("[type=range]").change(function(){
+        let newv=$(this).val();
+        $(this).next().text(newv);
+    });;
+
+    $("#amountOfStars").change(function(){
+        localStorage.setItem("bgStarCount", $(this).val());
+    })
+
+    
 });
 
 // Updates the arrow icon direction in the UI
@@ -142,6 +182,9 @@ function redirect(redirectId) {
         1: "logIn.php",
         2: "main.php",
         3: "register.php",
+        4: "upload.php",
+        5: "admin.php",
+        6: "settings.html",
         999: "index.html"
     };
 
@@ -154,7 +197,7 @@ function redirect(redirectId) {
     };
 
     Object.values(headerElements).forEach(el => animateElement(el, "smoothToTop", 0.5));
-    
+
     let animationType = "";
     switch (activeBodyTextArea) {
         case "infoHolderChild1" || "archDiv":
@@ -174,16 +217,39 @@ function redirect(redirectId) {
 
 // Document ready actions
 document.addEventListener("DOMContentLoaded", () => {
+    $(document).ready(
+        function () {
+
+            if (window.document.title == "Settings - Archive of 3D-Prints") {
+                $("#amountOfStars").val(parseInt(localStorage.getItem("bgStarCount")));
+                $("#amountOfStars").next().text(parseInt(localStorage.getItem("bgStarCount")));
+                switch (localStorage.getItem("canvasAnimation")) {
+                    case "true":
+                        $('#canvasAnimation').prop('checked', true);
+                        break;
+
+                    case "false":
+                        $('#canvasAnimation').prop('checked', false);
+                        break;
+                }
+            }
+
+        });
+
     const archiveSuffix = " - Archive of 3D-Prints";
     const titles = {
         0: "Log In",
         1: "About",
-        2: "Archive"
+        2: "Archive",
+        3: "Register",
+        4: "Upload",
+        5: "Admin Panel",
+        6: "Settings",
     };
     var activeSection = null;
 
     switch (document.title) {
-        case (titles[0] + archiveSuffix):
+        case (titles[0] + archiveSuffix || titles[3] + archiveSuffix || titles[4] + archiveSuffix || titles[5] + archiveSuffix || titles[6] + archiveSuffix):
             activeSection = "infoHolderChild1";
             break;
 
@@ -197,5 +263,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     activeBodyTextArea = activeSection;
-    console.log(activeBodyTextArea)
 })

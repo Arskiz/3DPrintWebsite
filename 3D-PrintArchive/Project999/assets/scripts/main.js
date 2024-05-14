@@ -31,9 +31,30 @@ logoutButton.addEventListener("click", () => {
     isArchiveLogOpened = !isArchiveLogOpened;
 });
 
+
+$(document).ready(function(){
+    $("#sort-select").val(localStorage.getItem("printSort"));
+    $("#sort-ascdesc").val(localStorage.getItem("printType"));
+})
+
+// Sorting mode
+function getVal(sel, type){
+    switch(type){
+        case 1:
+            localStorage.setItem("printSort", sel.value);
+        break;
+
+        case 2:
+            localStorage.setItem("printType", sel.value);
+        break;
+    }
+    
+    location.reload();
+}
+
 // Constructs URLs based on input
 function url(page) {
-    if (page == "logIn" || "main") {
+    if (page == "logIn" || page =="main" || page =="register" || page =="upload") {
         return page + ".php";
     }
     else {

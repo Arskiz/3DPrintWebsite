@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="assets/style-index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
@@ -31,6 +30,11 @@
         <!-- Right side of the header -->
         <div id="HeaderRight">
             <div id="HeaderRightNonHamburger">
+                <div class="nonSelectable OtherBtn Hoverable" onclick="redirect(6)" style="margin-right: 20px;">
+                    <p class="HeaderElementText">Settings</p>
+                    <img src="assets/icons/settings-cog.png" height="20px" alt="arrow_right" style="transform: rotate(270deg);">
+                </div>
+
                 <div id="SignUpDropDownButton2" class="nonSelectable Hoverable" onclick="redirect(2)">
                     <p class="HeaderElementText">To Archive</p>
                     <img src="assets/icons/arrow-right.png" height="20px" alt="arrow_right" style="filter:invert(100%); transform: rotate(270deg);">
@@ -60,7 +64,7 @@
 
     <canvas id="canvas"></canvas>
 
-    <div id="HamburgerContent">
+    <div id="HamburgerContent"  style="display:none">
         <div style="margin-top: 5px;">
             <p class="white pText textAlignCenter" style="font-size: 50px;">
                 Menu
@@ -100,7 +104,7 @@
         </h1>
         <div class="AboutUsDiv">
             <p class="white pText textAlignCenter">
-                Our archive provides a secure and user-friendly environment to store all your 3D files.
+                Our archive provides a secure and user-friendly environment to store all your 3D-printing related files.
             </p>
             <br>
             <br>
@@ -111,33 +115,22 @@
         <br>
         <br>
         <h1 class="pText AboutUsSubTitle">
-            Our Founders:
+            The site's Founders:
         </h1>
         <div class="AboutUsDiv">
             <p class="white pText textAlignCenter">
-                Developed by two exchange students from Finland right here at our school, Mercantec's 3D Archive was created to fill a need for reliable 3D file storage within our own community.
+                The site was developed by two exhange students from Finland, studying to be programmers at REDU education centre.
             </p>
             <br>
             <br>
             <p class="white pText textAlignCenter">
-                Seeing the challenge of managing numerous 3D projects, they built a solution that helps all students and staff manage their digital files with ease.
+                They were given a task: to make a site for students and staff of the school to make securing and managing 3D-printing files simple, carefree and secure.
             </p>
         </div>
         <br>
         <br>
-        <h1 class="pText AboutUsSubTitle">
-            Local Community Focus:
-        </h1>
-        <div class="AboutUsDiv">
-            <p class="white pText textAlignCenter">
-                As a service available exclusively on the school network, we’re focused on creating a supportive environment for our students and faculty. 
-            </p>
-            <br>
-            <br>
-            <p class="white pText textAlignCenter">
-                We’re committed to maintaining a high standard of security and functionality, ensuring that your projects are safe and always accessible within our community.
-            </p>
-        </div>
+
+       
     </div>
 
     <footer id="footer">

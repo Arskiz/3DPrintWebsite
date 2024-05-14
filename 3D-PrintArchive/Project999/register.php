@@ -60,7 +60,7 @@ function HandleErrors($_REASON_H){
         <!-- Right side of the header -->
         <div id="HeaderRight">
             <div id="HeaderRightNonHamburger">
-                <div class="Hoverable" id="BackButton" onclick="redirect(999)">
+                <div class="Hoverable OtherBtn" onclick="redirect(999)">
                     <p class="nonSelectable HeaderElementText">About This
                         Website</p>
                     <img src="assets/icons/exit-icon-white.png" class="start" height="20px" id="Exit-Icon"
@@ -102,7 +102,11 @@ function HandleErrors($_REASON_H){
                 </p>
                 <input title="Type your phone number here." style="margin-bottom: 5px;" id="phoneNumberIn" name="phoneNumberIn" placeholder="Type here..."
                 class="inputBox textAlignCenter" type="text">
-
+                
+                <div class="flexRow" style="align-items:center; justify-content:center">
+                    <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-left:20px;margin-right:10px">Apply for moderation?</p>
+                    <input class="checkmark" title="Apply for the moderation team?" name="applyForModeration" type="checkbox" style="margin-right:20px;">
+                </div>
 
                 <button class="pText Hoverable submitButton" type="submit" name="Send">
                     <p id="logInButtonText" style="margin: auto;" class="pText">
@@ -117,7 +121,7 @@ function HandleErrors($_REASON_H){
     </div>
     </div>
 
-    <div id="HamburgerContent">
+    <div id="HamburgerContent" style="display:none">
         <div style="margin-top: 5px;">
             <p class="white pText textAlignCenter" style="font-size: 50px;">
                 Menu

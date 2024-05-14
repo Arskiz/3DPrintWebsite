@@ -8,6 +8,83 @@
     --blurBG:rgba(255, 255, 255, 0.15);
 }
 
+.dropDown{
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 20px;
+    width: 350px;
+    text-align: left;
+    font-family: 'Nunito';
+    font-weight: 700;
+}
+
+option{
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Nunito';
+}
+
+
+.adminSection, .itemDetails, .itemComments, .privateItemAlert{
+    width:90%;
+    padding-left:20px;
+    padding-right:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    backdrop-filter: blur(5px);
+    border-radius:10px;
+    justify-content:center;
+}
+
+.privateItemAlert{
+    border:0.5px solid rgb(255, 74, 74);
+    background-color: rgba(255, 132, 132, 0.05);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.adminSection, .itemComments{
+    padding:10px;
+}
+
+.settingsItem{
+    margin-top: 10px;
+    align-items: center;
+    overflow:hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.otherDiv{
+    border: 0.5px solid white;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left:20px;
+    padding-right:20px;
+    display:flex;
+    backdrop-filter: blur(5px);
+    border-radius:10px;
+}
+
+.adminSection, .itemComments, .itemDetails{
+    border:0.5px solid white;
+    background-color: rgba(100,100,100,0.05);
+}
+
+.flexRow{
+    width: 100%;
+    justify-content:space-between;
+}
+
+.checkmark
+{
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius:15px;
+}
+
 html, #body{
     margin-top: 0px;
     margin-bottom: 0px;
@@ -62,6 +139,8 @@ header{
     justify-content:space-between;
     animation: headerAnim;
     animation-duration: 1.2s;
+    position: fixed;
+    top: 0;
 }
 
 header, footer {
@@ -71,7 +150,7 @@ header, footer {
     background-color: rgba(255, 255, 255, 0.04);
     padding-bottom: 5px;
     padding-top: 5px;
-    z-index: 0;
+    z-index: 5;
     width: 100%;
 }
 
@@ -111,7 +190,7 @@ header, footer {
     font-size: 35px;
 }
 
-#BackButton, #LogOutBtn{
+#LogOutBtn,#UploadBtn,#HomeBtn, .OtherBtn{
     transition: all 1s;
     display: flex;
     flex-direction: row;
@@ -121,7 +200,7 @@ header, footer {
     padding-right: 5px;
 }
 
-#BackButton:hover, #LogOutBtn:hover{
+#LogOutBtn:hover,#UploadBtn:hover,#HomeBtn:hover, .OtherBtn:hover{
     padding-left: 10px;
     padding-right: 10px;
     background-color: rgba(255, 255, 255, 0.05);
@@ -290,6 +369,10 @@ body{
     display: flex;
     flex-direction: row;
     transition: all 0.2s;
+}
+.CenterDiv{
+    align-items: center;
+    justify-content: center;
 }
 .Hoverable:hover{
     cursor: pointer;
@@ -475,8 +558,12 @@ canvas {
     }
 }
 
+
+
 footer{
-    margin-top: 30px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     text-align: center;
     animation: smoothFromBottom 1s, smoothOpacityIn 1s;
     width: 100%;
@@ -506,8 +593,21 @@ footer{
     user-select: none;
 }
 
+.noUnderline{
+    text-decoration: none;
+}
+
+a:hover{
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+}
+
 :root{
     --height: 60px;
+    --bs-body-bg: transparent;
+    body{
+        background-color: transparent;
+    }
 }
 
 @keyframes heightIncreaseFromTop{
@@ -535,6 +635,8 @@ body{
     justify-content: center;
     width: 100%;
     overflow-x: hidden;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 #HamburgerBTNImg{
@@ -574,6 +676,20 @@ body{
 
 .inputBox {
     height: 32px;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 2.5px;
+    border: none;
+    background: transparent;
+    background-color: transparent;
+    transition: all 0.2s;
+    margin-left: 20px;
+    margin-right: 20px;
+    backdrop-filter: blur(2px);
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.inputBoxBig{
     font-size: 20px;
     border-radius: 10px;
     padding: 2.5px;
@@ -637,7 +753,7 @@ body{
     }
 }
 
-@media (max-width: 720px){
+@media (max-width: 1030px){
     #HeaderLeft{
         margin-left: 5px;
     }
@@ -653,12 +769,15 @@ body{
     
 }
 
-@media (max-width:540px){
+@media (max-width:850px){
     #HeaderRightNonHamburger{
         display: none;
     }
     #HeaderRightHamburger{
         display: flex;
+    }
+    #accountWindow{
+        display: none;
     }
 }
 

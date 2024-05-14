@@ -28,9 +28,17 @@ html {
 }
 
 .flexColumn {
-
     display: flex;
     flex-direction: column;
+}
+
+#fC1 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /* Removed align items center because of issues */
+    justify-content: center; /* Default center alignment */
+    gap: 10px;
 }
 
 .flexRow {
@@ -39,6 +47,7 @@ html {
     margin-top: 15px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .row {
@@ -51,24 +60,20 @@ html {
 }
 
 .printItem {
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    transition: all 0.5s;
-    padding-top: 20px;
+    overflow-y: scroll;
+    height: 500px;
+    flex: 1 1 21%; /* Allows shrinking, grows to fill available space, base size of 200px */
+    max-width: 300px; /* Maximum width of each item */
+    margin: 10px;
+    padding: 20px;
     background-color: rgba(255, 255, 255, 0.05);
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0px 0px 2px black;
     backdrop-filter: blur(5px);
-    animation: fromRight 1s forwards, fadeIn 1s forwards;
     border-radius: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 20px;
-    align-items: center;
-    justify-content: center;
-
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 
@@ -145,8 +150,27 @@ html {
 
 }
 
+.banBTN{
+    transition: all 0.2s;
+    background-color: grey;
+}
+
+.banBTN:hover{
+    background-color: rgba(255,100,100,0.7);
+}
+
+.cooldownBTN{
+    transition: all 0.2s;
+    background-color: grey;
+}
+
+.cooldownBTN:hover{
+    background-color: rgba(200,100,0,1);
+}
+
 
 .printItemInner {
+    overflow: scroll;
     width: 100%;
     height: auto;
     margin-top: 10px;
@@ -156,7 +180,7 @@ html {
     display: flex;
     margin: auto;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .fixedOnTop {
@@ -262,24 +286,20 @@ html {
 #fR1 {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
 }
 
-#fR2 {
-    display: flex;
-
-}
 
 @media (max-width: 790px) {
     #itemPreviewImage {
         width: 500px;
     }
 
-    .fixedOnTop {
-
-    }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
     #centerHeaderText {
         display: none;
     }

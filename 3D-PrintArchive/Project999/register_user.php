@@ -1,8 +1,5 @@
 <?php
-    $servername = "192.168.116.229";
-    $serverUsername = "visitor";
-    $serverPassword = "userVisitor+";
-    $dbname = "Three_D";
+require_once('config.php');
 
 if (isset($_POST['Send'])) {
     $over = 0;
@@ -29,27 +26,35 @@ function CheckCredentials($userName, $passWord, $email, $realname, $phoneNumber,
     // Make a connection
     $connection = connect($targetServer, $serverUser, $serverPass, $serverDb);
     $hashedPass = hash("sha256", $passWord);
+
     // Make a query
+    $getHighestId = "SELECT MAX(id) as last_id from users";
+    $getLastId = $connection->query($getHighestId)->fetch_assoc()['last_id'] + 1;
     $getUserAmount = "SELECT * FROM users";
     $amountOfUsers = $connection->query($getUserAmount);
-    $currentUserID = $amountOfUsers->num_rows;
 
     if ($amountOfUsers->num_rows > 0) {
         while ($row = $amountOfUsers->fetch_assoc()) {
-            if (strcasecmp($row['userName'], $userName) == 0) {
+            if (strcasecmp($row['userName'], $userName) == 0) 
+            {
                 // Account name already taken
                 header("Location: register.php?r=accountname_mismatch");
                 break;
             } else {
-
-                
-
+                $applying = NULL;
                 //Insert values to database (users)
-                $sql = "INSERT into users (ID,userName,passWord,role,Token) VALUES ('$currentUserID','$userName','$hashedPass','Regular',NULL)";
+                if(isset($_POST['applyForModeration']))
+                {
+                    $applying = true;
+                } else {
+                    $applying = NULL;
+                }
+
+                $sql = "INSERT into users (ID,userName,password,role, userStatus, statusReason,Token, applyForModeration) VALUES ('$getLastId','$userName','$hashedPass','Regular', '','',NULL, '$applying')";
                 $connection->query($sql);
 
                 //Insert values to database (customers or customors whatever)
-                $sql = "INSERT into customors (ID,name,Email,phone) VALUES ('$currentUserID', '$realname', '$email', '$phoneNumber')";
+                $sql = "INSERT into customors (ID,name,Email,phone) VALUES ('$getLastId', '$realname', '$email', '$phoneNumber')";
                 $connection->query($sql);
 
                 // Redirect back
@@ -60,7 +65,7 @@ function CheckCredentials($userName, $passWord, $email, $realname, $phoneNumber,
     }
     else{
         //Insert values to database (users)
-        $sql = "INSERT into users (ID,userName,passWord,role,Token) VALUES ('$currentUserID','$userName','$hashedPass','Regular',NULL)";
+        $sql = "INSERT into users (ID,userName,password,role, userStatus, statusReason,Token) VALUES ('$currentUserID','$userName','$hashedPass','Regular', '','',NULL)";
         $connection->query($sql);
 
         //Insert values to database (customers or customors whatever)

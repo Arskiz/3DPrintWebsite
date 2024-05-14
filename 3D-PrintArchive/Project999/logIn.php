@@ -1,25 +1,31 @@
-<?php 
+<?php
 session_start();
 
 $_REASON;
+$_PUNISHMENT_REASON;
 if (isset($_GET['r'])) {
     $_REASON = $_GET['r'];
-}
-else
-{
+} else {
     $_REASON = "";
 }
 
-
+if (isset($_GET['br'])) {
+    $_PUNISHMENT_REASON = $_GET['br'];
+} else {
+    $_PUNISHMENT_REASON = "";
+}
 
 // Already Logged in? -> redirect
-if(isset($_SESSION['Token']) && $_SESSION['Token'] != null)
-{
+if (isset($_SESSION['Token']) && $_SESSION['Token'] != null) {
     header('Location: main.php');
 }
 
-function HandleErrors($_REASON_H){
-    switch($_REASON_H){
+function HandleErrors($_REASON_H)
+{
+    global $_PUNISHMENT_REASON;
+    switch ($_REASON_H) {
+        case 'insufficient_permissions':
+            return 'Insufficient permissions! Please log in with an account, that has the proper permissions!';
         case 'fields_empty':
             return 'At least one field is empty!';
         case 'pass_invalid':
@@ -29,13 +35,24 @@ function HandleErrors($_REASON_H){
 
         case "zero_accounts":
             return "There are no accounts in the database!";
+
+        case "on_cooldown":
+            return "User is on cooldown! <br>Reason: " . $_PUNISHMENT_REASON;
+
+        case "user_banned":
+            return "User is banned. <br>Reason: " . $_PUNISHMENT_REASON;
+
+        case "signIn_required":
+            return "You need to be signed in to perform this action.";
+
         case '':
             return "";
 
         case 'account_created_success':
             return "Your account was successfully created!";
+
         default:
-            return 'Unknown error detected!';
+            return 'Unknown error occurred!';
     }
 }
 ?>
@@ -72,7 +89,13 @@ function HandleErrors($_REASON_H){
         <!-- Right side of the header -->
         <div id="HeaderRight">
             <div id="HeaderRightNonHamburger">
-                <div class="Hoverable" id="BackButton" onclick="redirect(999)">
+                <div id="SignUpDropDownButton2" style="margin-right: 20px" class="nonSelectable Hoverable OtherBtn" onclick="redirect(2)">
+                    <p class="HeaderElementText">To Archive</p>
+                    <img src="assets/icons/arrow-right.png" height="20px" alt="arrow_right"
+                        style="filter:invert(100%); transform: rotate(270deg);">
+                </div>
+
+                <div class="Hoverable OtherBtn" onclick="redirect(999)">
                     <p class="nonSelectable HeaderElementText">About This
                         Website</p>
                     <img src="assets/icons/exit-icon-white.png" class="start" height="20px" id="Exit-Icon"
@@ -86,7 +109,7 @@ function HandleErrors($_REASON_H){
         </div>
     </header>
 
-    <div id="infoHolder" style="height:100%">
+    <div id="infoHolder" style="height:100%;width:400px;">
         <form action="database_connection.php" method="post">
             <div id="infoHolderChild1">
                 <p id="loginWindowTitle" class="pText nonSelectable"
@@ -95,30 +118,34 @@ function HandleErrors($_REASON_H){
                 <div class="line"></div>
                 <br>
 
-                <p id="userNameTitle" class="logInFormTitle  pText nonSelectable" style="margin-bottom: 5px;">Username:
-                </p>
-                <input title="Type your username here." style="margin-bottom: 5px;" id="userIn" name="userIn"
-                    class="inputBox textAlignCenter" type="text">
-                <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">Password:
-                </p>
-                <input title="Type your password here." style="margin-bottom: 5px;" id="passIn" name="passIn"
-                    class="inputBox textAlignCenter" type="password">
+                <p id="userNameTitle" class="logInFormTitle  pText nonSelectable" style="margin-bottom: 5px;">Username:</p>
+                <input required title="Type your username here." style="margin-bottom: 5px;" id="userIn" name="userIn"class="inputBox textAlignCenter" type="text" placeholder="Type here...">
+                
+                <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">Password:</p>
+                <input required title="Type your password here." style="margin-bottom: 5px;" id="passIn" name="passIn"class="inputBox textAlignCenter" type="password" placeholder="Type here...">
+                
                 <button class="pText Hoverable submitButton" type="submit" name="Send">
                     <p id="logInButtonText" style="margin: auto;" class="pText">
                         Sign In
                     </p>
                 </button>
-                <p style="margin-left: 20px;margin-top: 5px; margin-right: 20px; font-size: 25px" class="pText white">No account? Register <a class="pText white" style="font-size: 25px" href="register.php">here</a>.</p>
-                
+                <p style="margin-left: 20px;margin-top: 5px; margin-right: 20px; font-size: 25px"
+                    class="pText white textAlignCenter">No account? Register <a class="pText white"
+                        style="font-size: 25px" href="register.php">here</a>.</p>
+
         </form>
-        <p id="errorHandler" style="<?php if($_REASON == "account_created_success"){ echo'color: rgba(100,255,100,0.9)';} else{echo 'color: rgba(255,100,100,0.9);';}?>" class="pText logInFormText"><?php echo HandleErrors($_REASON); ?></p>
+        <p id="errorHandler" style="<?php if ($_REASON == "account_created_success") {
+            echo 'color: rgba(100,255,100,0.9)';
+        } else {
+            echo 'color: rgba(255,100,100,0.9);';
+        } ?>" class="pText logInFormText"><?php echo HandleErrors($_REASON); ?></p>
     </div>
     <div id="rc">
 
     </div>
     </div>
 
-    <div id="HamburgerContent">
+    <div id="HamburgerContent" style="display:none">
         <div style="margin-top: 5px;">
             <p class="white pText textAlignCenter" style="font-size: 50px;">
                 Menu
@@ -152,5 +179,6 @@ function HandleErrors($_REASON_H){
 <script src="assets/scripts/js.js"></script>
 <script src="assets/scripts/canvas.js"></script>
 <script src="assets/scripts/credentials_handler.js"></script>
+
 </html>
 <!-- Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved. -->

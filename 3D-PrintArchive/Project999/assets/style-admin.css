@@ -1,0 +1,314 @@
+:root {
+    --dark: rgb(48, 48, 48);
+    --mercRed: #85262b;
+    --mercGreen: #516540;
+    --mercBlue: #005f7a;
+    --mercBlueRGBA: rgba(0, 95, 122, 0.4);
+    --mercOrange: #dc9018;
+    --mercWhite: rgba(255, 255, 255, 0.7);
+    --mercFont: "Nunito";
+}
+html {
+    transition: all 0.3s;
+}
+
+
+#archDiv {
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100%;
+
+    transition: all 0.3s;
+}
+
+.flexColumn {
+
+    display: flex;
+    flex-direction: column;
+}
+
+#fC1 {
+    width: 94%;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.flexRow {
+    transition: all 0.5s;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.cardImg {
+    border-radius: 5px;
+}
+
+.printItem {
+    flex: 1 1 21%; /* Allows shrinking, grows to fill available space, base size of 200px */
+    max-width: 300px; /* Maximum width of each item */
+    margin: 10px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 0px 10px black;
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: auto;
+}
+
+
+.cardTxt {
+    transition: 0.3s all;
+    word-wrap: normal;
+}
+
+.cardTxt:hover {
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fromRight {
+    0% {
+        transform: translateX(150px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes fromUnder {
+    0% {
+        transform: translateY(150px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.blurCard {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(30px);
+}
+
+#itemPreviewInner {
+    position: absolute;
+    right: 10px;
+    left: 10px;
+    bottom: 10px;
+    top: 80px;
+    transition: all 0.2s;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.banBTN{
+    transition: all 0.2s;
+    background-color: grey;
+}
+
+.banBTN:hover{
+    background-color: rgba(255,100,100,0.7);
+}
+
+.cooldownBTN{
+    transition: all 0.2s;
+    background-color: grey;
+}
+
+.cooldownBTN:hover{
+    background-color: rgba(200,100,0,1);
+}
+
+
+.printItemInner {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: -5px;
+    padding-bottom: 5px;
+    align-items: center;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.fixedOnTop {
+    position: fixed;
+    z-index: 3;
+    top: 20px;
+    left: 20%;
+    right: 20%;
+    bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#itemPreviewImage {
+    transition: all 0.2;
+}
+
+#itemPreviewExit {
+    position: absolute;
+    right: 6px;
+    top: 8px;
+}
+
+#itemPreviewDescText {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#itemPreviewExit:hover {
+    box-shadow: inset 0px 0px 16px black;
+
+}
+
+#loadMoreBTN{
+    padding-left: 20px;
+    padding-right: 20px;
+    backdrop-filter: blur(6px);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 10px black;
+    margin-bottom: 30px;
+}
+#loadMoreBTN:hover{
+    border: 1px solid white;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#accountWindow {
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(40px);
+    border: 0px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    position: fixed;
+    right: 210px;
+    top: 75px;
+    z-index: 2;
+    flex-direction: column;
+}
+
+.windowAccountInfo {
+    text-wrap: nowrap;
+    font-size: 20px;
+}
+
+.iPT {
+    color: rgba(255, 255, 255, 0.707);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.itemInnerTitle {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+
+.itemTitle {
+    margin-bottom: 10px;
+}
+
+.itemFont {
+    font-family: var(--mercFont);
+    color: white;
+    user-select: none;
+}
+
+.itemButton {
+    border: 4px solid black;
+    border-radius: 5px;
+    margin-top: 25px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.itemButton:hover {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.671);
+}
+
+#fR1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+
+@media (max-width: 790px) {
+    #itemPreviewImage {
+        width: 500px;
+    }
+
+}
+
+@media (max-width: 1200px) {
+    #centerHeaderText {
+        display: none;
+    }
+}
+
+@media (max-width: 650px){
+    #accountWindow{
+        right: 170px;
+    }
+}
+/* Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved. */
