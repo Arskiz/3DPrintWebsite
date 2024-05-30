@@ -24,6 +24,22 @@ option{
     font-family: 'Nunito';
 }
 
+.betaTag {
+    margin: auto;
+    border: none;
+    background: linear-gradient(to right, rgba(255,100,100,1), rgba(147,112,219,1));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.betaTagText{
+    margin: auto;
+    font-size: 15px;
+    font-family: 'Nunito';
+}
 
 .adminSection, .itemDetails, .itemComments, .privateItemAlert{
     width:90%;
@@ -48,6 +64,43 @@ option{
     padding:10px;
 }
 
+.topBar{
+    border-radius: 10px;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.closeButton{
+    border-radius: 10px;
+    top: 10px;
+    right: 10px;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.closeButton:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.searchBox{
+    height: 50px;
+    width: 500px;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-family: 'Nunito';
+    font-size: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .settingsItem{
     margin-top: 10px;
     align-items: center;
@@ -58,13 +111,61 @@ option{
 }
 
 .otherDiv{
-    border: 0.5px solid white;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding-left:20px;
-    padding-right:20px;
-    display:flex;
+    flex: 1 1 21%; /* Allows shrinking, grows to fill available space, base size of 200px */
+    max-width: 400px;
+    margin: 10px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 0px 10px black;
     backdrop-filter: blur(5px);
-    border-radius:10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+}
+
+.settingsDiv{
+    flex: 1 1 21%; /* Allows shrinking, grows to fill available space, base size of 200px */
+    margin: 10px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 0px 10px black;
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+}
+
+.infoBox{
+    width: 100%;
+    overflow-wrap: break-word;
+    align-self: center;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.1);
+    border: 0.5px solid rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.infoBoxRow{
+    overflow-wrap: break-word;
+    align-self: center;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.1);
+    border: 0.5px solid rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .adminSection, .itemComments, .itemDetails{
@@ -171,6 +272,13 @@ header, footer {
     background-color: rgba(255,255,255,0.1);
 }
 
+.adminLine{
+    height: 2px;
+    border-radius: 20px;
+    background-color: rgba(255,255,255,0.1);
+    width: 100%;
+}
+
 #rct2, #rct1{
     user-select: none;
 }
@@ -196,6 +304,7 @@ header, footer {
     flex-direction: row;
     align-items: center;
     border-radius: 10px;
+    padding: 20px;
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -257,6 +366,10 @@ body{
 
 .justifyBetween{
     justify-content: space-between;
+}
+h1{
+    margin: auto !important;
+    margin-right: 5px;
 }
 
 #errorExitBtn{
@@ -540,7 +653,17 @@ canvas {
 
 
 ::-webkit-scrollbar{
-    display: none;
+    border-radius: 10px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 
@@ -668,9 +791,9 @@ body{
     justify-content: flex-start;
 
     padding-bottom: 10px;
-    background-color: rgba(255, 255, 255, 0.07);
+    background-color: rgba(0, 0, 0, 0.4);
     border: 0.5px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     animation: smoothOpacityIn 1s ease-in-out, growInFromVoid 1s ease-in-out;
 }
 
@@ -769,7 +892,7 @@ body{
     
 }
 
-@media (max-width:850px){
+@media (max-width:890px){
     #HeaderRightNonHamburger{
         display: none;
     }
@@ -781,9 +904,34 @@ body{
     }
 }
 
-@media (max-width: 370px){
+@media (max-width:570px) {
+    .settingsItemRowColumn{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.2);
+        border: 1px solid white;
+        border-radius: 10px;
+        padding-bottom: 10px;
+    }
+    #bgAnimationBtn{
+        text-align: center;
+    }
+
+    #rowColumnChild{
+        justify-content: center;
+    }
+}
+
+@media (min-width:570px) {
+    #rowColumnChild{
+        justify-content: right;
+    }
+}
+
+/*@media (max-width: 370px){
     body{
         width: auto;
     }
-}
+}*/
 /* Copyright© Aron Särkioja (deprecated script) */

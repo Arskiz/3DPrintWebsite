@@ -1,4 +1,3 @@
-// Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved.
 // State tracking for the signup dropdown visibility
 let isSignUpDropdownOpened = false;
 
@@ -41,6 +40,7 @@ $(document).ready(function(){
     $("#bgAnimationBtn").click(function(){
         $("#bgAnimationOption").collapse('toggle'); // toggle collapse
     });
+    
 })
 
 // State tracking for the main dropdown menu
@@ -56,6 +56,7 @@ let isHamburgerMenuOpened = false;
 // Initializes dropdown handlers on window load
 $(window).on("load", function ()
 {
+    
     let cV = localStorage.getItem("canvasAnimation");
     switch(cV)
     {
@@ -64,7 +65,6 @@ $(window).on("load", function ()
             SetCanvas(true);
         break;
     }
-
 
     $("#SignUpDropDownButton").on("click", function () {
         if (!isMainDropdownOpened) {
@@ -95,7 +95,7 @@ $(window).on("load", function ()
     });
 
     hamburgerMenuButton.on("click", function () {
-        if (isHamburgerMenuOpened) {
+        if (!isHamburgerMenuOpened) {
             hamburgerMenuContent.css("animation", "smoothOpacityIn 1s ease-in-out, growInFromVoid 1s ease-in-out");
             hamburgerButtonImage.css("transform", "RotateZ(90deg)")
 
@@ -218,6 +218,7 @@ function redirect(redirectId) {
 // Document ready actions
 document.addEventListener("DOMContentLoaded", () => {
     $(document).ready(
+
         function () {
 
             if (window.document.title == "Settings - Archive of 3D-Prints") {
@@ -264,3 +265,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     activeBodyTextArea = activeSection;
 })
+// This was my first time touching setIntervals and stuff so bare with me. The animations and transitions arent 100% spot on.

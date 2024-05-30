@@ -1,4 +1,4 @@
-// Copyright© Aron Särkioja & W3Schools.com to Mercantec, Inc. 2024. All rights reserved.
+
 var canvas, ctx, body;
 var drawing = true;
 var stars = [],

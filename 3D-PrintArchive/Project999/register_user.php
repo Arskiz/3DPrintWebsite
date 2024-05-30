@@ -13,6 +13,7 @@ if (isset($_POST['Send'])) {
         $over = 2;
     }
 
+    // If all fields have text in them. (In future a way of depicting minimum character size users have to put e.g in username would be nice).
     if ($over == 2)
         CheckCredentials($username, $password, $email, $realName, $phoneNumber, $servername, $serverUsername, $serverPassword, $dbname);
     else {
@@ -21,13 +22,13 @@ if (isset($_POST['Send'])) {
     }
 }
 
+// Check if user already exists in the database, if the user does NOT, then proceed to register
 function CheckCredentials($userName, $passWord, $email, $realname, $phoneNumber, $targetServer, $serverUser, $serverPass, $serverDb)
 {
-    // Make a connection
+
     $connection = connect($targetServer, $serverUser, $serverPass, $serverDb);
     $hashedPass = hash("sha256", $passWord);
 
-    // Make a query
     $getHighestId = "SELECT MAX(id) as last_id from users";
     $getLastId = $connection->query($getHighestId)->fetch_assoc()['last_id'] + 1;
     $getUserAmount = "SELECT * FROM users";
@@ -41,17 +42,18 @@ function CheckCredentials($userName, $passWord, $email, $realname, $phoneNumber,
                 header("Location: register.php?r=accountname_mismatch");
                 break;
             } else {
-                $applying = NULL;
+                $applying = false;
                 //Insert values to database (users)
                 if(isset($_POST['applyForModeration']))
                 {
                     $applying = true;
                 } else {
-                    $applying = NULL;
+                    $applying = false;
                 }
-
-                $sql = "INSERT into users (ID,userName,password,role, userStatus, statusReason,Token, applyForModeration) VALUES ('$getLastId','$userName','$hashedPass','Regular', '','',NULL, '$applying')";
+                $date = date('Y-m-d');
+                $sql = "INSERT into users (ID,userName,password,role, userStatus, statusReason,Token, applyForModeration, dateCreated) VALUES ('$getLastId','$userName','$hashedPass','Regular', '','',NULL, $applying, '$date')";
                 $connection->query($sql);
+                json_encode("message", $sql);
 
                 //Insert values to database (customers or customors whatever)
                 $sql = "INSERT into customors (ID,name,Email,phone) VALUES ('$getLastId', '$realname', '$email', '$phoneNumber')";
@@ -88,5 +90,3 @@ function connect($servername, $username, $password, $dbname)
     return $conn;
 }
 ?>
-
-<!-- Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved. -->

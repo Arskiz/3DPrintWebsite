@@ -1,23 +1,22 @@
-<?php 
+<?php
 session_start();
 
 $_REASON;
 if (isset($_GET['r'])) {
     $_REASON = $_GET['r'];
-}
-else
-{
+} else {
     $_REASON = "";
 }
 
 // Already Logged in? -> redirect
-if(isset($_SESSION['Token']) && $_SESSION['Token'] != null)
-{
+if (isset($_SESSION['Token']) && $_SESSION['Token'] != null) {
     header('Location: main.php');
 }
 
-function HandleErrors($_REASON_H){
-    switch($_REASON_H){
+// If error happened, handle them in here. Also must be passed with the url! cases depict the ones passed with URL.
+function HandleErrors($_REASON_H)
+{
+    switch ($_REASON_H) {
         case 'accountname_mismatch':
             return 'Account name is already in use!';
         case 'field_error':
@@ -35,7 +34,6 @@ function HandleErrors($_REASON_H){
     <link rel="stylesheet" href="assets/style-logIn.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
@@ -51,8 +49,9 @@ function HandleErrors($_REASON_H){
     <header id="header">
         <!-- Left side of the header -->
         <div id="HeaderLeft">
-            <div style="margin-left: 15px" class="Hoverable" onclick="redirect(0)"><img
-                    src="assets/icons/mercantec-logo-white.png" alt="Mercantec Logo" width="170px"></div>
+            <div style="margin-left: 15px" class="Hoverable" onclick="redirect(0)"
+                title="Redirect to Mercantec school website"><img src="assets/icons/mercantec-logo-white.png"
+                    alt="Mercantec Logo" width="170px"></div>
 
             <!--<p class="Titles">3D-Print archive</p>-->
         </div>
@@ -60,9 +59,15 @@ function HandleErrors($_REASON_H){
         <!-- Right side of the header -->
         <div id="HeaderRight">
             <div id="HeaderRightNonHamburger">
+                <div id="SignUpDropDownButton2" style="margin-right: 20px" class="nonSelectable Hoverable OtherBtn"
+                    onclick="redirect(2)">
+                    <h1 class="HeaderElementText">To Archive</h1>
+                    <img src="assets/icons/arrow-right.png" height="20px" alt="arrow_right"
+                        style="filter:invert(100%); transform: rotate(270deg);">
+                </div>
                 <div class="Hoverable OtherBtn" onclick="redirect(999)">
-                    <p class="nonSelectable HeaderElementText">About This
-                        Website</p>
+                    <h1 class="nonSelectable HeaderElementText">About This
+                        Website</h1>
                     <img src="assets/icons/exit-icon-white.png" class="start" height="20px" id="Exit-Icon"
                         alt="home-icon-btn">
                 </div>
@@ -93,23 +98,27 @@ function HandleErrors($_REASON_H){
                 <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">Email:
                 </p>
                 <input title="Type your email here." style="margin-bottom: 5px;" id="emailIn" name="emailIn"
-                class="inputBox textAlignCenter" type="email" placeholder="Type here...">
-                <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">First and Last Name:
+                    class="inputBox textAlignCenter" type="email" placeholder="Type here...">
+                <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">First and
+                    Last Name:
                 </p>
                 <input title="Type your first name here." style="margin-bottom: 5px;" id="nameIn" name="nameIn"
-                class="inputBox textAlignCenter" type="text" placeholder="Type here...">
-                <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">Phone Number:
+                    class="inputBox textAlignCenter" type="text" placeholder="Type here...">
+                <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">Phone
+                    Number:
                 </p>
-                <input title="Type your phone number here." style="margin-bottom: 5px;" id="phoneNumberIn" name="phoneNumberIn" placeholder="Type here..."
-                class="inputBox textAlignCenter" type="text">
-                
+                <input title="Type your phone number here." style="margin-bottom: 5px;" id="phoneNumberIn"
+                    name="phoneNumberIn" placeholder="Type here..." class="inputBox textAlignCenter" type="text">
+
                 <div class="flexRow" style="align-items:center; justify-content:center">
-                    <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-left:20px;margin-right:10px">Apply for moderation?</p>
-                    <input class="checkmark" title="Apply for the moderation team?" name="applyForModeration" type="checkbox" style="margin-right:20px;">
+                    <p id="passWordTitle" class="logInFormTitle pText nonSelectable"
+                        style="margin-left:20px;margin-right:10px">Apply for moderation?</p>
+                    <input class="checkmark" title="Apply for the moderation team?" name="applyForModeration"
+                        type="checkbox" style="margin-right:20px;">
                 </div>
 
                 <button class="pText Hoverable submitButton" type="submit" name="Send">
-                    <p id="logInButtonText" style="margin: auto;" class="pText">
+                    <p id="logInButtonText" style="margin: auto;" class="pText white">
                         Register
                     </p>
                 </button>
@@ -155,5 +164,5 @@ function HandleErrors($_REASON_H){
 <script src="assets/scripts/js.js"></script>
 <script src="assets/scripts/canvas.js"></script>
 <script src="assets/scripts/credentials_handler.js"></script>
+
 </html>
-<!-- Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved. -->

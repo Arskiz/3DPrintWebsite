@@ -13,6 +13,27 @@ html {
 }
 
 
+#detailWindow{
+    width: 95%;
+    height: 93%;
+    overflow-y: scroll;
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    left: 20px;
+    top: 30px;
+    right: 20px;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(70px);
+    border: 2px solid white;
+    align-self: center;
+    justify-self: center;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
 #archDiv {
     justify-content: center;
     align-items: center;
@@ -39,6 +60,8 @@ html {
     /* Removed align items center because of issues */
     justify-content: center; /* Default center alignment */
     gap: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .flexRow {
@@ -59,7 +82,7 @@ html {
     border-radius: 5px;
 }
 
-.printItem {
+.printItem { /* Deprecated & Not in use. Head to "otherDiv" in style-shared. */ 
     overflow-y: scroll;
     height: 500px;
     flex: 1 1 21%; /* Allows shrinking, grows to fill available space, base size of 200px */
@@ -67,7 +90,7 @@ html {
     margin: 10px;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.05);
-    box-shadow: 0px 0px 2px black;
+    box-shadow: inset 0px 0px 10px black;
     backdrop-filter: blur(5px);
     border-radius: 10px;
     display: flex;
@@ -240,9 +263,13 @@ html {
     padding: 10px;
     position: fixed;
     right: 210px;
-    top: 75px;
+    top: 100px;
     z-index: 2;
     flex-direction: column;
+}
+
+#detailsWindowTitle{
+    text-align: left;
 }
 
 .windowAccountInfo {
@@ -291,6 +318,17 @@ html {
     justify-content: flex-start;
 }
 
+@media (max-width: 569px) {
+   .closeButton {
+        width: 100%;
+        text-align: center;
+    }
+
+    #detailsWindowTitle{
+        text-align: center;
+    }
+
+}
 
 @media (max-width: 790px) {
     #itemPreviewImage {
@@ -299,7 +337,7 @@ html {
 
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1290px) {
     #centerHeaderText {
         display: none;
     }

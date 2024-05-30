@@ -8,16 +8,15 @@ if (isset($_GET['r'])) {
     $_REASON = "";
 }
 
-// Not logged in? => redirect back.
+// Not logged in? => redirect back as the website's upload system is made for registered and logged in users ONLY.
 if (!isset($_SESSION['Token']) && $_SESSION['Token'] == null) {
     header('Location: logIn.php?r=signIn_required');
 }
 
+// Handle errors passed with the URL using the r-variable.
 function HandleErrors($_REASON_H)
 {
     switch ($_REASON_H) {
-        case 'accountname_mismatch':
-            return 'Account name is already in use!';
         case 'field_error':
             return "At least one of the fields is empty!";
         default:
@@ -48,7 +47,7 @@ function HandleErrors($_REASON_H)
     <header id="header">
         <!-- Left side of the header -->
         <div id="HeaderLeft">
-            <div style="margin-left: 15px" class="Hoverable" onclick="redirect(0)"><img
+            <div style="margin-left: 15px" class="Hoverable" onclick="redirect(0)" title="Redirect to Mercantec school website"><img
                     src="assets/icons/mercantec-logo-white.png" alt="Mercantec Logo" width="170px"></div>
 
             <!--<p class="Titles">3D-Print archive</p>-->
@@ -58,12 +57,12 @@ function HandleErrors($_REASON_H)
         <div id="HeaderRight">
             <div id="HeaderRightNonHamburger">
                 <div class="Hoverable OtherBtn" style="margin-right: 20px" id="BackButton" onclick="redirect(2)">
-                    <p class="nonSelectable HeaderElementText">To Archive</p>
-                    <img src="assets/icons/exit-icon-white.png" class="start" height="20px" id="Exit-Icon" alt="home-icon-btn">
+                    <h1 class="nonSelectable HeaderElementText">To Archive</h1>
+                    <img src="assets/icons/arrow-right.png" style="filter: invert(1); transform: rotateZ(-90deg);" class="start" height="20px" id="Exit-Icon" alt="home-icon-btn">
                 </div>
                 <div class="Hoverable OtherBtn" id="BackButton" onclick="redirect(999)">
-                    <p class="nonSelectable HeaderElementText">About This
-                        Website</p>
+                    <h1 class="nonSelectable HeaderElementText">About This
+                        Website</h1>
                     <img src="assets/icons/exit-icon-white.png" class="start" height="20px" id="Exit-Icon"
                         alt="home-icon-btn">
                 </div>
@@ -92,13 +91,14 @@ function HandleErrors($_REASON_H)
                 <input required title="Type the color of the item here." style="margin-bottom: 5px;" id="colorIn" name="colorIn" class="inputBox textAlignCenter" type="text" placeholder="Type here...">
                 
                 <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">Comments:</p>
-                <input title="Type additional comments" style="margin-bottom: 5px;" id="commentsIn" name="commentsIn" class="inputBoxBig textAlignCenter" type="text" placeholder="Type here...">
+                <textarea textarea rows="10" cols="40" title="Type additional comments" style="margin-bottom: 5px; width: 90%; height: 100px;" id="commentsIn" name="commentsIn" class="inputBoxBig textAlignCenter" type="text" placeholder="Type here...">Undefined</textarea>
+
                 
                 <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">File:</p>
                 <input required type="file" title="Upload file with this" style="margin-bottom: 5px;" id="fileIn" name="fileIn"class="inputBox textAlignCenter" type="text">
 
-                <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">Additional item image:</p>
-                <input type="file" title="Upload image file for item" style="margin-bottom: 5px;" id="fileIn" name="imageFileIn" class="inputBox textAlignCenter" type="text">
+                <!-- <p id="passWordTitle" class="logInFormTitle pText nonSelectable" style="margin-bottom: 5px;">Additional item image:</p>
+                <input type="file" title="Upload image file for item" style="margin-bottom: 5px;" id="fileIn" name="imageFileIn" class="inputBox textAlignCenter" type="text"> -->
 
                 <button class="pText Hoverable submitButton" type="submit" name="Send">
                     <p id="logInButtonText" style="margin: auto;" class="pText">

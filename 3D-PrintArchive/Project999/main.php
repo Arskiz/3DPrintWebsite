@@ -174,8 +174,6 @@ function buildPrivacyToggle($row)
 <html id="html" lang="en">
 
 <head>
-    <link rel="stylesheet" href="assets/style-shared.css">
-    <link rel="stylesheet" href="assets/style-main.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -184,6 +182,17 @@ function buildPrivacyToggle($row)
         rel="stylesheet">
     <title>Archive - Archive of 3D-Prints</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="assets/style-shared.css">
+    <link rel="stylesheet" href="assets/style-main.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -196,11 +205,11 @@ function buildPrivacyToggle($row)
         <!-- Left side of the header -->
         <div id="HeaderLeft">
             <div title="Redirect to Mercantec school website" style="margin-left: 15px" class="Hoverable"
-                onclick="redirect(0)"><img src="assets/icons/mercantec-logo-white.png" alt="Mercantec Logo"
-                    width="170px"></div>
+                onclick="redirect(0)" title="Redirect to Mercantec school website"><img
+                    src="assets/icons/mercantec-logo-white.png" alt="Mercantec Logo" width="170px"></div>
         </div>
 
-        <p id="centerHeaderText" class="white Titles"><?php echo "Hello, " . getRealUser() . "!"; ?></p>
+        <h1 id="centerHeaderText" class="white Titles"><?php echo "Hello, " . getRealUser() . "!"; ?></h1>
 
         <!-- Right side of the header -->
         <div id="HeaderRight">
@@ -208,30 +217,33 @@ function buildPrivacyToggle($row)
                 <?php if (GetAdministrator(2)) {
                     echo '
                     <div class="Hoverable OtherBtn" style="margin-right: 20px;" onclick="redirect(5)">
-                        <p class="nonSelectable HeaderElementText">Admin panel</p>
+                        <h1 class="nonSelectable HeaderElementText white">Admin panel</h1>
                         <img src="assets/icons/user-admin-panel.png"
-                            style="transform: rotate(0deg); filter:invert(100%); user-select: none;" class="start"
+                            style="transform: rotate(0deg); filter:invert(100%); user-select: none; margin-right:10px;" class="start"
                             height="25px" id="Upload-Icon" alt="upload-icon-btn">
+                        <div class="betaTag">
+                            <p class="nonSelectable betaTagText white">BETA</p>
+                        </div>
                     </div>
                 ';
                 } ?>
 
                 <div class="Hoverable" style="margin-right: 20px;" id="UploadBtn" onclick="redirect(4)">
-                    <p class="nonSelectable HeaderElementText">Upload</p>
+                    <h1 class="nonSelectable HeaderElementText">Upload</h1>
                     <img src="assets/icons/arrow-right.png"
                         style="transform: rotate(-90deg); filter:invert(100%); user-select: none;" class="start"
                         height="20px" id="Upload-Icon" alt="upload-icon-btn">
                 </div>
 
                 <div class="Hoverable" style="margin-right: 20px;" id="LogOutBtn">
-                    <p id="headerRightLoggedUsedName" class="nonSelectable HeaderElementText">User</p>
+                    <h1 id="headerRightLoggedUsedName" class="nonSelectable HeaderElementText">User</h1>
                     <img src="assets/icons/character.png" class="start"
                         style="transform: rotate(360deg); filter:invert(100%); user-select: none;" height="20px"
                         id="Character-Icon" alt="Character-Icon-Png">
                 </div>
 
                 <div class="Hoverable" id="HomeBtn" onclick="redirect(999)">
-                    <p class="nonSelectable HeaderElementText">About This Website</p>
+                    <h1 class="nonSelectable HeaderElementText">About This Website</h1>
                     <img src="assets/icons/exit-icon-white.png" class="start" height="20px" id="Exit-Icon"
                         alt="home-icon-btn">
                 </div>
@@ -247,20 +259,44 @@ function buildPrivacyToggle($row)
         <div id="fR1">
             <!-- Desktop -->
             <div class="flexColumn" style="width:100%; justify-content: center; align-items:center;">
+                <!-- Work in progress, Remove the comments and finish :)
+                <div style="margin-bottom:20px">
+                    <h1 class="pText white" style="text-align:left">
+                        Search:
+                    </h1>
+                    
+                        <div class="flexRow" style="justify-content:center;align-items:center;">
+                        <input type="text" class="searchBox" placeholder="Type here...">
+                        <button class="buttonBNR" style="padding" onclick="Fetch">
+                            <p class="pText white">
+                                Search
+                            </p>
+                        </button>
+                    </div>
+                    
+                    
+                </div>
+                -->
                 <h1 class="pText white">
                     Sort Results By:
                 </h1>
                 <div class="flexRow" style="justify-content:center; gap:10px">
                     <select onchange="getVal(this, 1)" class="dropDown" name="sortMode" id="sort-select">
-                        <option value="id"><p class="pText">Post Id</p></option>
-                        <option value="name"><p class="pText">Post Name</p></option>
-                        <option value="authorId"><p class="pText">Author Id</p></option>
-                        <option value="authorName"><p class="pText">Author Name</p></option>
+                        <option value="name">
+                            <p class="pText">Post Name</p>
+                        </option>
+                        <option value="id">
+                            <p class="pText">Post Id</p>
+                        </option>
                     </select>
 
                     <select onchange="getVal(this, 2)" class="dropDown" name="sortType" id="sort-ascdesc">
-                        <option value="asc"><p class="pText">Ascending</p></option>
-                        <option value="desc"><p class="pText">Descending</p></option>
+                        <option value="asc">
+                            <p class="pText">Ascending</p>
+                        </option>
+                        <option value="desc">
+                            <p class="pText">Descending</p>
+                        </option>
                     </select>
                 </div>
             </div>
@@ -278,6 +314,10 @@ function buildPrivacyToggle($row)
         </div>
 
 
+        <div id="detailWindow">
+
+        </div>
+
         <div id="HamburgerContent" style="display:none">
             <div style="margin-top: 5px;">
                 <p class="white pText textAlignCenter" style="font-size: 50px;">
@@ -286,32 +326,53 @@ function buildPrivacyToggle($row)
 
                 <div class="lineLonger" style="margin-bottom: 10px;"></div>
             </div>
+            <div class="flexColumn"
+                style="justify-content:space-between; align-items:center; width:100%; height: 100%;">
+                <div class="flexColumn" style="justify-content:space-between; align-items:center; width:100%">
+                    <?php if (GetAdministrator(2)) {
+                        echo '<button class="Hoverable buttonBNR nonSelectable" onclick="redirect(5)" style="margin-bottom: 5px; padding-bottom: 10px;width:95%">
+                            <p class="pText white" style="font-size: 30px;">
+                                Admin Panel
+                            </p>
+                            <div class="betaTag">
+                                <p class="nonSelectable betaTagText white">BETA</p>
+                            </div>
 
-            <?php if (GetAdministrator(2)) {
-                echo '<button class="Hoverable buttonBNR nonSelectable" onclick="redirect(5)" style="margin-bottom: 5px;">
-                <p class="pText white" style="font-size: 30px;">
-                    Admin Panel
-                </p>
-            </button>';
-            } ?>
+                        </button>';
+                    } ?>
 
-            <button class="Hoverable buttonBNR nonSelectable" onclick="redirect(4)" style="margin-bottom: 5px;">
-                <p class="pText white" style="font-size: 30px;">
-                    Upload
-                </p>
-            </button>
+                    <button class="Hoverable buttonBNR nonSelectable" onclick="redirect(4)"
+                        style="margin-bottom: 5px;width:95%">
+                        <p class="pText white" style="font-size: 30px;">
+                            Upload
+                        </p>
+                    </button>
 
-            <button class="Hoverable buttonBNR nonSelectable" onclick="redirect(1)" style="margin-bottom: 5px;">
-                <p class="pText white" style="font-size: 30px;">
-                    Log In
-                </p>
-            </button>
+                    <button class="Hoverable buttonBNR nonSelectable" onclick="redirect(1)"
+                        style="margin-bottom: 5px;width:95%">
+                        <p class="pText white" style="font-size: 30px;">
+                            Log In
+                        </p>
+                    </button>
 
-            <button class="Hoverable buttonBNR nonSelectable" onclick="redirect(999)">
-                <p class="pText white" style="font-size: 30px;">
-                    About this website
-                </p>
-            </button>
+                    <button class="Hoverable buttonBNR nonSelectable" onclick="redirect(999)" style="width:95%">
+                        <p class="pText white" style="font-size: 30px;">
+                            About this website
+                        </p>
+                    </button>
+                </div>
+
+                <div class="flexRow" style="align-items:center;justify-content:center">
+                    <?php
+                    if (getLoggedInStatus()) {
+                        echo '<h1 class="pText green" style="margin:0; margin-right: 10px">Logged In As:</h1>';
+                        echo '<h1 class="pText orange" style="margin:0;">' . getRealUser() . '</h1>';
+                    } else {
+                        echo '<h1 class="pText red" style="margin:0; margin-right: 10px">Not Logged In!</h1>';
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
 
         <div id="accountWindow">
@@ -392,54 +453,73 @@ function buildPrivacyToggle($row)
 <script src="assets/scripts/js.js"></script>
 <script src="assets/scripts/canvas.js"></script>
 <script src="assets/scripts/main.js"></script>
+
+<?php `<script>localStorage.setItem('user', $user->name)</script>` ?>
 <script>
-let lastValue = '';
-let lastItem = {}; // Store the last fetched item
-
-$(document).ready(function () {
-    Fetch();
-});
-
-function Fetch() {
-    let sort = localStorage.getItem("printSort") ?? "name";
-    fetchPost(sort);
-}
-
-function fetchPost(sorting) {
-    let ascDesc = localStorage.getItem("printType") ?? "asc";
-    let idParam = sorting === "id" ? lastItem.ID ?? '' : '';
-    let nameParam = sorting === "name" ? encodeURIComponent(lastItem.name ?? '') : '';
-
-    $.ajax({
-        url: `fetch-data.php?type=print&id=${idParam}&name=${nameParam}&sort=${sorting}&ascDesc=${ascDesc}`,
-        type: "get",
-        dataType: 'json',
-        success: function (result) {
-            if (result.length > 0) {
-                result.forEach(function (item) {
-                    $("#fC1").append(generateUserCard(item.ID, item.name, item.AUTHOR_ID, item.material, item.color, item.Comments, item.FileName, item.PRIVATE, item.AUTHOR_NAME, item.IMAGE_EXTENSION, item.FILE_CORRECT));
-                });
-                // Update lastItem to the last element in the result array
-                lastItem = result[result.length - 1];
-                console.log(result);
-            } else {
-                alert("No more items found.");
-            }
-        },
-        error: function (xhr, status, error) {
-            console.error("Error occurred: " + status + " - Error: " + error);
-            alert("No more items found.");
-        }
+    let lastValue;
+    let amountToFetchAtATime = 20;
+    let lastFetchedItem = {};
+    let allFetchedItems = [];
+    let lastValueParam = null;
+    $(document).ready(function () {
+        Fetch(1);
     });
-}
+
+    function Fetch(firstTime = 0) {
+        let sort = localStorage.getItem("printSort") ?? "name";
+        fetchPost(sort, firstTime);
+    }
+
+    function fetchPost(sorting, firstTime = 0) {
+        let ascDesc = localStorage.getItem("printType") ?? "asc";
+
+        if (sorting === 'id' || sorting === 'authorId' || sorting === 'name') {
+            switch (sorting) {
+                case 'id':
+                    if (ascDesc === 'desc') {
+                        lastValueParam = (firstTime === 1) ? 9999999999 : allFetchedItems[allFetchedItems.length - 1].ID;
+                    } else {
+                        lastValueParam = (firstTime === 1) ? -1 : allFetchedItems[allFetchedItems.length - 1].ID;
+                    }
+                    break;
+
+                case 'name':
+                    if (ascDesc === 'asc') {
+                        lastValueParam = (firstTime === 1) ? '!' : lastFetchedItem.name;
+                    } else if (ascDesc === 'desc') {
+                        lastValueParam = (firstTime === 1) ? '~' : lastFetchedItem.name;
+                    }
+                    break;
+            }
+        }
+
+        $.ajax({
+            url: `fetch-data.php?type=print&id=${lastValueParam}&sort=${sorting}&ascDesc=${ascDesc}&limit=${amountToFetchAtATime}`,
+            type: "get",
+            dataType: 'json',
+            success: function (result) {
+                if (result.length > 0) {
+                    result.forEach(function (item) {
+                        if (!allFetchedItems.some(fetchedItem => fetchedItem.ID === item.ID)) {
+                            $("#fC1").append(generateItemCard(item.ID, item.name, item.AUTHOR_ID, item.material, item.color, item.Comments, item.FileName, item.PRIVATE, item.AUTHOR_NAME, item.IMAGE_EXTENSION, item.FILE_CORRECT, "WIP, Full name not implemented here yet."));
+                            allFetchedItems.push(item);
+                        }
+                    });
+                    lastFetchedItem = result[result.length - 1];
+                    lastValue = sorting === "id" ? lastFetchedItem.ID : lastFetchedItem.name;
+                } else {
+                    alert("No more items found.");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error occurred: " + status + "\nError: \n" + error);
+                alert("Error occurred.");
+            }
+        });
+    }
 
 
-function updateLastValue(data, sorting) {
-    lastValue = data[data.length - 1][sorting]; // Update based on the field sorted by
-    console.log("Updated last value to: " + lastValue);
-}
-
-    function generateUserCard(ID, NAME, AUTHOR_ID, MATERIAL, COLOR, COMMENTS, FILENAME, PRIVATE, AUTHOR_NAME, IMAGE_EXTENSION, FILENAMECORRECT) {
+    function generateItemCard(ID, NAME, AUTHOR_ID, MATERIAL, COLOR, COMMENTS, FILENAME, PRIVATE, AUTHOR_NAME, IMAGE_EXTENSION, FILENAMECORRECT, REALNAME) {
         let status = (PRIVATE == "0") ? "Not Private" : "Private";
         let statusColor = "";
 
@@ -458,57 +538,29 @@ function updateLastValue(data, sorting) {
                 break;
         }
 
-        let html = "<div class='otherDiv flexColumn' style='width:400px'>"
+        let html = "<div class='otherDiv flexColumn' style='width:300px'>"
             + "<div class='flexRow' style='justify-content:center; margin-bottom:5px;'>"
-            + "<p class='pText white' style='margin: 0px 10px'>3D Item -</p>"
-            + `<h1 class='pText red' style='margin: 0px 0px'>${NAME}:</h1>`
+            //+ "<p class='pText white' style='margin: 0px 10px'>3D Item -</p>"
+            + `<p class='pText red' style='margin: 0px 0px'>${NAME}:</p>`
             + "</div>"
 
             + "<div class='line' style='height:5px'></div>"
 
-            + "<div class='flexRow' style='justify-content: space-between;'>"
-            + "<b class='pText white' style='margin: 0px 10px'>Post ID:</b>"
-            + "<p class='pText white' style='margin: 0px 10px'>"
-            + `${ID}`
-            + "</p>"
-            + "</div>"
+            + `<a class='noUnderline pText white nonSelectable' style='margin: 0px 0px; text-align:center' onclick="WindowPreview('${ID}','${NAME}','${AUTHOR_ID}','${MATERIAL}','${COLOR}','${COMMENTS}','${FILENAME}','${PRIVATE}','${AUTHOR_NAME}','${REALNAME}')"> Show Details</a>`
 
-            + "<div class='flexRow' style='justify-content: space-between;'>"
-            + "<b class='pText white' style='margin: 0px 10px'>Author:</b>"
-            + "<p class='pText white' style='margin: 0px 10px'>"
-            + `${AUTHOR_NAME}`
-            + "</p>"
-            + "</div>"
-
-            + "<div class='flexRow' style='justify-content: space-between;'>"
-            + "<b class='pText white' style='margin: 0px 10px'>Author ID:</b>"
-            + `<p class='pText white' style='margin: 0px 10px'>${AUTHOR_ID}</p>`
-            + "</div>"
-
-            + "<div class='flexRow' style='justify-content: space-between;'>"
-            + "<b class='pText white' style='margin: 0px 10px'>Material:</b>"
-            + `<p class='pText white' style='margin: 0px 10px'>${MATERIAL}</p>`
-
-            + "<div class='flexRow' style='justify-content: space-between;'>"
-            + "<b class='pText white' style='margin: 0px 10px'>Color:</b>"
-            + `<p class='pText white' style='margin: 0px 10px'>${COLOR}</p>`
-
-            + "<div class='flexRow' style='justify-content: space-between;'>"
-            + "<b class='pText white' style='margin: 0px 10px'>File Name:</b>"
-            + `<p class='pText white' style='margin: 0px 10px'>${FILENAME}</p>`
-
-            + "<div class='flexRow' style='justify-content: space-between;'>"
-            + "<div class='flexColumn' style='width:100%'>"
-            + "<b class='pText white' style='margin: 0px 10px'>Comments:</b>"
-            + `<p class='pText white' style='margin: 0px 10px'>${COMMENTS}</p>`
-            + "</div>"
             + `<form action='download_file.php?f=${FILENAME}&n=${FILENAMECORRECT}' method='post' style="margin:auto; margin-top:20px">`
-            + `<button type='submit' class='buttonBNR white Hoverable' style='padding: 10px; margin-bottom: -20px'>Download ${NAME}`
+            + `<button title="Download ${NAME}" type='submit' class='buttonBNR white Hoverable' style='padding: 10px; margin-bottom: 20px'>Download ${NAME}`
             + "</button>"
             + "</form>"
+            + "</div>"
             ;
 
-        return html;
+        if (status == "Not Private") {
+            return html;
+        }
+        else {
+            return "";
+        }
     }
 
     function capitalizeFirstLetter(word) {
@@ -516,8 +568,7 @@ function updateLastValue(data, sorting) {
         return word.charAt(0).toUpperCase() + word.slice(1);
     }
 
-    
+
 </script>
 
 </html>
-<!-- Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved. -->

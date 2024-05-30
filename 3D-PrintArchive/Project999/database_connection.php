@@ -20,6 +20,7 @@ if (isset($_POST['Send'])) {
     }
 }
 
+// A function to log to the browser's console. Not in use anymore, but it was handy for debugging earlier in the past.
 function console_log($output, $with_script_tags = true)
 {
     $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
@@ -30,6 +31,7 @@ function console_log($output, $with_script_tags = true)
     echo $js_code;
 }
 
+// Used to generate the token
 function random_string($length)
 {
     $str = random_bytes($length);
@@ -39,6 +41,7 @@ function random_string($length)
     return $str;
 }
 
+// Try to log in. Compares username to accounts in server to see if such account even exists. Then proceeds to compare passwords by hashing the user inputted one and then compares it to the already-hashed-one in the server.
 function CheckCredentials($user, $pass, $targetServer, $serverUser, $serverPass, $serverDb)
 {
     // Make a connection
@@ -98,6 +101,7 @@ function CheckCredentials($user, $pass, $targetServer, $serverUser, $serverPass,
 
 }
 
+// Updates the token
 function token($row, $user, $connection)
 {
     session_start();
@@ -139,4 +143,3 @@ function connect($servername, $username, $password, $dbname)
 }
 
 ?>
-<!-- Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved. -->

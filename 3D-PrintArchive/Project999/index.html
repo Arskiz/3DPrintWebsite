@@ -21,7 +21,7 @@
     <header id="header">
         <!-- Left side of the header -->
         <div id="HeaderLeft">
-            <div style="margin-left: 15px" class="Hoverable" onclick="redirect(0)"><img
+            <div style="margin-left: 15px" class="Hoverable" onclick="redirect(0)" title="Redirect to Mercantec school website"><img
                     src="assets/icons/mercantec-logo-white.png" alt="Mercantec Logo" width="170px"></div>
 
             <!--<p class="Titles">3D-Print archive</p>-->
@@ -31,17 +31,20 @@
         <div id="HeaderRight">
             <div id="HeaderRightNonHamburger">
                 <div class="nonSelectable OtherBtn Hoverable" onclick="redirect(6)" style="margin-right: 20px;">
-                    <p class="HeaderElementText">Settings</p>
+                    <h1 class="HeaderElementText">Settings</h1>
                     <img src="assets/icons/settings-cog.png" height="20px" alt="arrow_right" style="transform: rotate(270deg);">
+                    <div class="betaTag" style="margin-left: 10px;">
+                        <p class="nonSelectable betaTagText white">BETA</p>
+                    </div>
                 </div>
 
                 <div id="SignUpDropDownButton2" class="nonSelectable Hoverable" onclick="redirect(2)">
-                    <p class="HeaderElementText">To Archive</p>
+                    <h1 class="HeaderElementText">To Archive</h1>
                     <img src="assets/icons/arrow-right.png" height="20px" alt="arrow_right" style="filter:invert(100%); transform: rotate(270deg);">
                 </div>
     
                 <div id="SignUpDropDownButton" class="nonSelectable Hoverable" >
-                    <p class="HeaderElementText">Log In</p>
+                    <h1 class="HeaderElementText" style="margin-right: 10px;">Log In</h1>
                     <img src="assets/icons/collapse_arrow.png" class="start" height="20px" id="Arrow_SignUp"
                         alt="arrow_collapse">
                 </div>
@@ -84,10 +87,23 @@
                 Log In
             </p>
         </button>
+        <button class="Hoverable buttonBNR nonSelectable" onclick="redirect(6)" style="margin-top: 10px; padding-bottom: 10px;">
+            <p class="pText white" style="font-size: 30px;">
+                Settings
+            </p>
+            <div class="betaTag">
+                <p class="nonSelectable betaTagText white">BETA</p>
+            </div>
+
+        </button>
     </div>
     
     <!-- Home text etc... -->
     <div id="HomeText">
+        <h1 class="pText white textAlignCenter">Introduction:</h1>
+        <div style="margin-top: 20px;" class="lineLonger"></div>
+        <br>
+        <br>
         <p class="white pText textAlignCenter" >
             Welcome to Mercantec's 3D Archive! This is your go-to spot on the school network for storing personal and work-related 3D files safely and easily.
         </p>    

@@ -1,6 +1,7 @@
 <?php
 require_once ('config.php');
 
+// Get data passed with URL.
 $_TYPE;
 if (isset($_GET['t'])) {
     $_TYPE = $_GET['t'];
@@ -51,6 +52,8 @@ if($_TYPE == "ban" || $_TYPE == "cooldown")
 else
     SetFilePrivate($_TYPE, $Item_ID);
 
+
+// A function that makes player either banned or on cooldown. To use this to punish people, call it in forms with passing also argumets: t(type of the ban), u(user_id, the user's id you want to give a punishment to, r(requester, so your own userName))
 function punish($type, $requester, $targetUser, $punishmentReason)
 {
     global $servername, $serverUsername, $serverPassword, $dbname;
@@ -76,15 +79,14 @@ function punish($type, $requester, $targetUser, $punishmentReason)
         } else {
             // No permissions.
             echo "Access denied: No permissions.";
-            die("No permissions.");
         }
     } else {
         // User not found with such username.
         echo "Task failed: No requester user with such username found.";
-        die("No requester user with such username found.");
     }
 }
 
+// Sets all files private by the UserID, ($itemID)
 function SetFilePrivate($privateStatus, $itemID)
 {
     global $servername, $serverUsername, $serverPassword, $dbname; 

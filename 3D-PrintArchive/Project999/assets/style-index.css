@@ -34,7 +34,7 @@
     padding: 7px;
     position: fixed;
     right: var(--rightAmount);
-    top: 65px;
+    top: 80px;
     border-radius: 10px;
     border: 2px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(6px);
@@ -72,7 +72,7 @@ body{
         padding: 7px;
         position: fixed;
         right: 5px;
-        top: 65px;
+        top: 80px;
         border-radius: 10px;
         transition: opacity 0.3s ease;
     }

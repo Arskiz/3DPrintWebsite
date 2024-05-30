@@ -9,6 +9,7 @@ if (isset($_GET['r'])) {
     $_REASON = "";
 }
 
+// Shorthand for banReason, but does also work if punishment is a cooldown
 if (isset($_GET['br'])) {
     $_PUNISHMENT_REASON = $_GET['br'];
 } else {
@@ -20,6 +21,7 @@ if (isset($_SESSION['Token']) && $_SESSION['Token'] != null) {
     header('Location: main.php');
 }
 
+// Handle various errors. Error reason is passed with the URL so that they can be handled here.
 function HandleErrors($_REASON_H)
 {
     global $_PUNISHMENT_REASON;
@@ -90,14 +92,14 @@ function HandleErrors($_REASON_H)
         <div id="HeaderRight">
             <div id="HeaderRightNonHamburger">
                 <div id="SignUpDropDownButton2" style="margin-right: 20px" class="nonSelectable Hoverable OtherBtn" onclick="redirect(2)">
-                    <p class="HeaderElementText">To Archive</p>
+                    <h1 class="HeaderElementText">To Archive</h1>
                     <img src="assets/icons/arrow-right.png" height="20px" alt="arrow_right"
                         style="filter:invert(100%); transform: rotate(270deg);">
                 </div>
 
                 <div class="Hoverable OtherBtn" onclick="redirect(999)">
-                    <p class="nonSelectable HeaderElementText">About This
-                        Website</p>
+                    <h1 class="nonSelectable HeaderElementText">About This
+                        Website</h1>
                     <img src="assets/icons/exit-icon-white.png" class="start" height="20px" id="Exit-Icon"
                         alt="home-icon-btn">
                 </div>
@@ -181,4 +183,3 @@ function HandleErrors($_REASON_H)
 <script src="assets/scripts/credentials_handler.js"></script>
 
 </html>
-<!-- Copyright© Aron Särkioja to Mercantec, Inc. 2024. All rights reserved. -->

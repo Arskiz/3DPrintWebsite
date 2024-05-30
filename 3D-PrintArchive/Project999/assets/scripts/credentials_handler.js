@@ -1,4 +1,1 @@
-// Constructs an URL for navigation
-function url(page) {
-    return page + fileType;
-}
+// This script holded a handler for checking log-in and other database credentials and stuff, but they were rmoved for security purposes and converted to PHP.

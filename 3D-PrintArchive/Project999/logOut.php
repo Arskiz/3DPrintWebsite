@@ -9,6 +9,7 @@ if ($conn->connect_error) {
     die();
 }
 
+// Get data again from the URL
 $TYPE;
 $REASON;
 if (isset($_GET['t'])) {
@@ -22,6 +23,8 @@ if (isset($_GET['r'])) {
     $REASON = "";
 }
 
+
+// Clear token from the current account. (WIP, does not always work.)
 $_TOKEN = $_SESSION['Token'];
 $sql = "SELECT * from users where Token = '$_TOKEN'";
 $result = $conn->query($sql);
@@ -32,6 +35,7 @@ while($row = $result->fetch_assoc()){
 $conn->close();
 session_destroy();
 
+// Redirect afterwards, else-statement redirects with error codes depicting a punishment.
 if($TYPE == "" || $REASON == "")
     header("Location: main.php");
 else{
